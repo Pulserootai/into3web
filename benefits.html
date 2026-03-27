@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1S0R5L8N3Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1S0R5L8N3Y');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will My Child Benefit? — into3.ai</title>
+<meta name="description" content="Honest answers to parents' questions about into3.ai — how adaptive AI learning helps every child.">
+<link rel="canonical" href="https://into3.ai/benefits.html">
+<link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dbbwqu5qi/image/upload/v1770751935/White_Logo_vmwb0d.svg">
+<meta name="theme-color" content="#050508">
+<meta property="og:title" content="Will My Child Benefit? — into3.ai">
+<meta property="og:description" content="Honest answers to parents' most common questions about AI adaptive learning for every child.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://into3.ai/benefits.html">
+<meta property="og:image" content="https://into3.ai/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@into3ai">
+<meta name="twitter:title" content="Will My Child Benefit? — into3.ai">
+<meta name="twitter:description" content="Honest answers for parents about AI adaptive learning.">
+<meta name="robots" content="index, follow">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #050508;
+  color: #e0e0e0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.page-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Nav */
+nav {
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #111;
+  background: rgba(5, 5, 8, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav .logo-link {
+  text-decoration: none;
+}
+
+nav .logo-link img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+nav .back-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #555;
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+nav .back-link:hover {
+  color: #888;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Hero */
+.hero {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 100px 40px 60px;
+  text-align: center;
+}
+
+.hero-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c084fc;
+  margin-bottom: 28px;
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(138, 43, 226, 0.25);
+  border-radius: 3px;
+  background: rgba(138, 43, 226, 0.06);
+}
+
+.hero h1 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.hero .subtitle {
+  font-size: 17px;
+  color: #777;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Short Answer Callout */
+.short-answer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 40px 70px;
+}
+
+.callout-box {
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  border-left: 3px solid #8a2be2;
+  border-radius: 8px;
+  padding: 36px 40px;
+  background: rgba(138, 43, 226, 0.04);
+  position: relative;
+}
+
+.callout-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c084fc;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.callout-box p {
+  font-size: 17px;
+  color: #ccc;
+  line-height: 1.8;
+}
+
+/* Q&A Section */
+.qa-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+.qa-section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.qa-section-header h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.qa-section-header p {
+  font-size: 15px;
+  color: #555;
+}
+
+/* Accordion Card */
+.qa-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 3px solid rgba(138, 43, 226, 0.35);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.qa-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-left-color: rgba(138, 43, 226, 0.6);
+}
+
+.qa-card.active {
+  border-left-color: #8a2be2;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.qa-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 28px;
+  cursor: pointer;
+  user-select: none;
+  gap: 16px;
+}
+
+.qa-question span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.qa-icon {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s ease, border-color 0.3s;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  color: #c084fc;
+}
+
+.qa-card.active .qa-icon {
+  transform: rotate(45deg);
+  border-color: rgba(138, 43, 226, 0.4);
+}
+
+.qa-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s ease;
+}
+
+.qa-answer-inner {
+  padding: 0 28px 24px;
+  font-size: 15px;
+  color: #888;
+  line-height: 1.8;
+}
+
+.qa-answer-inner a {
+  color: #c084fc;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(192, 132, 252, 0.3);
+  transition: border-color 0.3s;
+}
+
+.qa-answer-inner a:hover {
+  border-bottom-color: #c084fc;
+}
+
+/* CTA Section */
+.cta-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 40px 100px;
+  text-align: center;
+}
+
+.cta-divider {
+  width: 50px;
+  height: 1px;
+  background: rgba(138, 43, 226, 0.3);
+  margin: 0 auto 40px;
+}
+
+.cta-section h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 32px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 30px;
+  border-radius: 5px;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.cta-btn.primary {
+  background: #8a2be2;
+  color: #fff;
+  border: 1px solid #8a2be2;
+}
+
+.cta-btn.primary:hover {
+  background: #9b3ff3;
+  border-color: #9b3ff3;
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  color: #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-btn.secondary:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.cta-btn.green {
+  background: transparent;
+  color: #00ff9d;
+  border: 1px solid rgba(0, 255, 157, 0.25);
+}
+
+.cta-btn.green:hover {
+  background: rgba(0, 255, 157, 0.08);
+  border-color: rgba(0, 255, 157, 0.45);
+}
+
+/* Footer */
+footer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  border-top: 1px solid #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer img {
+  height: 22px;
+  width: auto;
+}
+
+footer span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: #333;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  nav {
+    padding: 16px 24px;
+  }
+
+  .hero {
+    padding: 70px 24px 50px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero .subtitle {
+    font-size: 15px;
+  }
+
+  .short-answer {
+    padding: 0 24px 50px;
+  }
+
+  .callout-box {
+    padding: 28px 24px;
+  }
+
+  .callout-box p {
+    font-size: 15px;
+  }
+
+  .qa-section {
+    padding: 0 24px 60px;
+  }
+
+  .qa-section-header h2 {
+    font-size: 26px;
+  }
+
+  .qa-question {
+    padding: 18px 20px;
+  }
+
+  .qa-question span {
+    font-size: 15px;
+  }
+
+  .qa-answer-inner {
+    padding: 0 20px 20px;
+    font-size: 14px;
+  }
+
+  .cta-section {
+    padding: 30px 24px 70px;
+  }
+
+  .cta-section h2 {
+    font-size: 24px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-btn {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+
+  footer {
+    padding: 24px;
+  }
+}
+</style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+
+<div class="page-content">
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="logo-link"><img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai"></a>
+    <a href="index.html" class="back-link">&#8592; Back to Home</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-tag" data-animate="fade-up">FOR PARENTS</div>
+    <h1 data-animate="fade-up">Will my child actually benefit?</h1>
+    <p class="subtitle" data-animate="fade-up">The honest answer: it depends on nothing about your child — and everything about the system they use.</p>
+  </section>
+
+  <!-- Short Answer -->
+  <section class="short-answer">
+    <div class="callout-box" data-animate="fade-up">
+      <span class="callout-label">The Short Answer</span>
+      <p>Yes. into3 adapts to every child individually — whether they're struggling, average, or gifted. The system doesn't assume a level. It discovers it, and builds from there.</p>
+    </div>
+  </section>
+
+  <!-- Q&A Accordion -->
+  <section class="qa-section">
+    <div class="qa-section-header" data-animate="fade-up">
+      <h2>Common questions from parents</h2>
+      <p>Click any question to see our honest answer.</p>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>My child is already doing well in school. Will into3 still help?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">Yes — into3 doesn't just fix problems, it accelerates strengths. High-performing students often plateau because the system can't keep up with them. into3 identifies untapped potential and pushes them further with advanced pathways that challenge them at exactly the right level, keeping curiosity alive and momentum building.</div>
+      </div>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>My child struggles with focus. Can AI really help with that?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">This is exactly what into3 was built for. The RTAE engine tracks 14 engagement signals every second. The moment attention dips, the content adapts — pace changes, visual style shifts, or a micro-break is triggered. Focus isn't forced; it's maintained organically by keeping the experience aligned with how your child's attention naturally works.</div>
+      </div>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>Will this replace my child's school?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">No. into3 is designed to complement school, not replace it. The School Work Alignment module syncs with your child's syllabus, homework, and exam schedule. Think of it as a layer of intelligence on top of their existing education — one that fills gaps, reinforces concepts, and prepares them ahead of time.</div>
+      </div>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>My child doesn't like studying. Will they enjoy this?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">into3 doesn't feel like studying. It feels like the content was made just for them — because it literally was. When explanations match how a child thinks, learning stops feeling like a chore and starts clicking. Most children who dislike studying dislike the format, not the knowledge itself. into3 fixes the format.</div>
+      </div>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>How is this different from YouTube tutorials or other apps?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">YouTube gives everyone the same video. Other apps give everyone the same quiz. into3 builds a unique cognitive profile for your child across 27 markers and assembles every lecture, every explanation, every practice session specifically for their mind. No two students see the same thing. It's the difference between off-the-rack and custom-tailored.</div>
+      </div>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>Is this safe for my child? What data do you collect?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">We take this extremely seriously. We're compliant with COPPA, GDPR-K, and India's DPDP Act. We track learning signals — not personal behavior. No cameras, no surveillance. All data is encrypted and used solely to improve your child's learning. Parents have full control via the dashboard. Read our full <a href="privacy.html">privacy policy</a> for complete details.</div>
+      </div>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>What subjects does it cover?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">Currently, into3 covers core subjects for Classes 6–12 aligned with CBSE, ICSE, and state board curricula — including Mathematics, Science, English, and Social Studies. We're continuously expanding subject coverage and adding new boards and grade levels based on demand.</div>
+      </div>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>Can I see my child's progress?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">Absolutely. The Parent Dashboard gives you real-time visibility into your child's learning — what they studied, how focused they were, where they struggled, and what's coming next. No more guessing. You see the full picture, updated after every session.</div>
+      </div>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>What if we don't like it? Can we get a refund?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">You can try the full platform free for 30 days — no charge, no commitment. If you continue and later want to cancel, you can request a refund within the first 7 days of your billing month. We want you to stay because it works, not because you're locked in. See our <a href="refund.html">refund policy</a> and <a href="trial.html">free trial details</a>.</div>
+      </div>
+    </div>
+
+    <div class="qa-card" data-animate="qa-stagger">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>My child has a learning disability. Can into3 help?</span>
+        <div class="qa-icon">+</div>
+      </div>
+      <div class="qa-answer">
+        <div class="qa-answer-inner">into3's adaptive engine is designed to meet every child where they are. While we don't replace specialized therapy, our system naturally adjusts pace, complexity, and teaching style to match individual cognitive patterns — which benefits children with diverse learning needs. Every child learns differently, and into3 respects that at its core.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" data-animate="fade-up">
+    <div class="cta-divider"></div>
+    <h2>Still have questions?</h2>
+    <div class="cta-buttons">
+      <a href="demo.html" class="cta-btn primary">Book a Demo</a>
+      <a href="contact.html" class="cta-btn secondary">Contact Us</a>
+      <a href="trial.html" class="cta-btn green">Start Free Trial</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai">
+    <span>&copy; 2025 into3.ai. All rights reserved.</span>
+  </footer>
+
+</div>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
+
+<script>
+// Particle Canvas
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    const count = Math.floor((w * h) / 18000);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.2 + 0.3,
+        dx: (Math.random() - 0.5) * 0.25,
+        dy: (Math.random() - 0.5) * 0.15,
+        alpha: Math.random() * 0.35 + 0.05,
+        color: Math.random() > 0.85 ? 'rgba(138,43,226,' : 'rgba(255,255,255,'
+      });
+    }
+  }
+
+  var animId;
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (let p of particles) {
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0) p.x = w;
+      if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h;
+      if (p.y > h) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + p.alpha + ')';
+      ctx.fill();
+    }
+    animId = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+  resize();
+  createParticles();
+  draw();
+  window.addEventListener('beforeunload', function() { if (animId) cancelAnimationFrame(animId); });
+})();
+
+// Accordion
+function toggleQA(el) {
+  const card = el.parentElement;
+  const answer = card.querySelector('.qa-answer');
+  const inner = answer.querySelector('.qa-answer-inner');
+  const isActive = card.classList.contains('active');
+
+  // Close all others
+  document.querySelectorAll('.qa-card.active').forEach(c => {
+    if (c !== card) {
+      c.classList.remove('active');
+      c.querySelector('.qa-answer').style.maxHeight = '0';
+    }
+  });
+
+  if (isActive) {
+    card.classList.remove('active');
+    answer.style.maxHeight = '0';
+  } else {
+    card.classList.add('active');
+    answer.style.maxHeight = inner.scrollHeight + 24 + 'px';
+  }
+}
+
+// GSAP Animations
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero fade-ups
+gsap.utils.toArray('[data-animate="fade-up"]').forEach((el, i) => {
+  gsap.from(el, {
+    y: 40,
+    opacity: 0,
+    duration: 0.9,
+    delay: i * 0.12,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 90%',
+      once: true
+    }
+  });
+});
+
+// Q&A staggered reveal
+gsap.utils.toArray('[data-animate="qa-stagger"]').forEach((el, i) => {
+  gsap.from(el, {
+    y: 30,
+    opacity: 0,
+    duration: 0.7,
+    delay: i * 0.08,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 92%',
+      once: true
+    }
+  });
+});
+</script>
+
+</body>
+</html>

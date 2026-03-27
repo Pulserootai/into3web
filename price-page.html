@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1S0R5L8N3Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1S0R5L8N3Y');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pricing — into3.ai | AI-Powered Adaptive Learning</title>
+    <meta name="description" content="Choose your into3.ai plan — Doubt Class at ₹299/month or the Full Adaptive Platform at ₹1,499/month.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://into3.ai/pricing.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="into3.ai">
+    <meta property="og:title" content="Pricing — into3.ai Adaptive Learning from ₹299/mo">
+    <meta property="og:description" content="Doubt Class ₹299/mo or Full Platform ₹1,499/mo. 30-day free trial.">
+    <meta property="og:url" content="https://into3.ai/pricing.html">
+    <meta property="og:image" content="https://into3.ai/og-image.jpg">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@into3ai">
+    <meta name="twitter:title" content="Pricing — into3.ai">
+    <meta name="twitter:description" content="AI adaptive learning plans from ₹299/month.">
+    <meta name="theme-color" content="#050508">
+    <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dbbwqu5qi/image/upload/v1770751935/White_Logo_vmwb0d.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=Inter:ital,wght@1,800;1,900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha384-0k1dj5tm+KUH/4vkNk/i90XsjDA8Ltmt+ybcrFoH4t0dgv/WZsPpVBnkhcroX8UL" crossorigin="anonymous"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+    <style>
+        :root { 
+            --bg: #050508; 
+            --violet: #8a2be2; 
+            --vl: #c084fc; 
+            --green: #00ff9d;
+            --mono: 'IBM Plex Mono', monospace;
+            --sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); 
+            color: #fff; 
+            font-family: var(--sans); 
+            overflow-x: hidden; 
+            min-height: 100vh; 
+        }
+
+        /* ——— BACKGROUND VFX ——— */
+        #pricing-particles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; opacity: 0.4;
+        }
+
+        /* ——— NAV ——— */
+        .p-nav {
+            padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 100;
+            background: rgba(5,5,8,0.8); backdrop-filter: blur(20px);
+        }
+        .p-nav-logo { font-size: 1.4rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -1px; }
+        .p-nav-logo span { color: var(--violet); }
+        .p-nav-back { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; text-decoration: none; padding: 8px 18px; border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; transition: 0.3s; }
+        .p-nav-back:hover { border-color: var(--violet); color: var(--vl); }
+
+        /* ——— HEADER ——— */
+        .pricing-header { text-align: center; padding: 100px 20px 40px; position: relative; z-index: 1; }
+        .pricing-tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--violet); padding: 6px 20px; border: 1px solid rgba(138,43,226,0.3); background: rgba(138,43,226,0.05); margin-bottom: 25px; border-radius: 4px; }
+        .pricing-title { font-family: 'Inter', sans-serif; font-style: italic; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; letter-spacing: -2px; line-height: 1; margin-bottom: 20px; }
+        .pricing-title span { background: linear-gradient(90deg, var(--vl), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* ——— TOGGLE ——— */
+        .billing-toggle { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 60px; font-family: var(--mono); font-size: 13px; z-index: 1; position: relative; }
+        .billing-toggle span { color: #444; transition: 0.3s; }
+        .billing-toggle span.active { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        .toggle-track { width: 50px; height: 26px; border-radius: 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); position: relative; cursor: pointer; }
+        .toggle-knob { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--violet); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 0 15px var(--violet); }
+        .toggle-track.active .toggle-knob { transform: translateX(24px); background: var(--green); box-shadow: 0 0 15px var(--green); }
+        .save-badge { font-size: 9px; color: var(--green); padding: 4px 10px; border: 1px solid rgba(0,255,157,0.2); border-radius: 20px; background: rgba(0,255,157,0.05); }
+
+        /* ——— PREMIUM CARDS ——— */
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 420px)); gap: 30px; justify-content: center; padding: 0 20px 100px; position: relative; z-index: 1; }
+
+        .vfx-card { position: relative; background: rgba(20, 20, 25, 0.6); border-radius: 32px; padding: 2px; overflow: hidden; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; }
+        .card-inner { background: #08080c; border-radius: 30px; padding: 50px 40px; height: 100%; position: relative; z-index: 2; display: flex; flex-direction: column; }
+        
+        /* LED Border for Popular Card */
+        .popular-vfx .led-border { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, transparent, var(--violet), var(--green), var(--violet)); animation: rotateLED 4s linear infinite; z-index: 1; }
+        @keyframes rotateLED { 100% { transform: rotate(360deg); } }
+
+        .popular-tag { position: absolute; top: 25px; right: 30px; background: var(--green); color: #000; font-family: var(--mono); font-size: 9px; font-weight: 800; padding: 5px 14px; border-radius: 20px; letter-spacing: 1px; }
+
+        .card-icon-box { margin-bottom: 30px; height: 60px; }
+        .card-name { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; }
+        .card-desc { font-size: 0.95rem; color: #777; line-height: 1.6; margin-bottom: 35px; min-height: 50px; }
+
+        .card-price { margin-bottom: 35px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 30px; }
+        .price-amount { font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; }
+        .price-amount .rupee { font-size: 1.5rem; color: #444; vertical-align: super; margin-right: 5px; }
+        .price-period { font-family: var(--mono); font-size: 12px; color: #444; }
+
+        .vfx-features { list-style: none; flex-grow: 1; }
+        .vfx-features li { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-family: var(--mono); font-size: 13px; color: #999; }
+        .vfx-features li b { color: #fff; }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 10px var(--violet); }
+        .green-dot { background: var(--green); box-shadow: 0 0 10px var(--green); }
+        .disabled { opacity: 0.25; filter: grayscale(1); }
+
+        .vfx-btn { width: 100%; padding: 20px; border-radius: 14px; font-family: var(--mono); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.4s; margin-top: 40px; border: none; }
+        .btn-outline { background: transparent; border: 1px solid rgba(138,43,226,0.3); color: var(--vl); }
+        .btn-outline:hover { background: rgba(138,43,226,0.1); border-color: var(--violet); transform: translateY(-3px); }
+        .btn-gradient { background: linear-gradient(135deg, #6a1b9a, var(--violet)); color: #fff; box-shadow: 0 10px 30px rgba(138,43,226,0.3); }
+        .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(138,43,226,0.5); filter: brightness(1.2); }
+
+        /* ——— FAQ ——— */
+        .faq-section { max-width: 800px; margin: 0 auto 120px; padding: 0 20px; position: relative; z-index: 1; }
+        .faq-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 50px; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; cursor: pointer; font-weight: 600; color: #ccc; transition: 0.3s; }
+        .faq-q:hover { color: #fff; }
+        .faq-toggle { font-family: var(--mono); color: var(--violet); font-size: 20px; }
+        .faq-a { max-height: 0; overflow: hidden; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .faq-item.open .faq-a { max-height: 200px; padding-bottom: 25px; }
+        .faq-a p { font-family: var(--mono); font-size: 13px; color: #666; line-height: 1.8; }
+
+        @media (max-width: 1024px) {
+            .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+            .card-inner { padding: 40px 30px; }
+        }
+        @media (max-width: 900px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+            .pricing-title { font-size: 3rem; }
+            .p-nav { padding: 16px 20px; }
+        }
+        @media (max-width: 480px) {
+            .card-inner { padding: 28px 20px; }
+            .price-amount { font-size: 2.8rem; }
+            .card-name { font-size: 1.5rem; }
+            .pricing-header { padding: 70px 16px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="pricing-particles"></canvas>
+
+<nav class="p-nav">
+    <a href="index.html" class="p-nav-logo" aria-label="into3.ai homepage"><img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai logo" style="height:26px;width:auto;display:block;"></a>
+    <a href="index.html" class="p-nav-back">← Home</a>
+</nav>
+
+<header class="pricing-header">
+    <div class="pricing-tag">Smart Pricing</div>
+    <h1 class="pricing-title">One system. <span>Two ways in.</span></h1>
+</header>
+
+<div class="billing-toggle">
+    <span class="active" id="label-m">Monthly</span>
+    <div class="toggle-track" id="billing-toggle">
+        <div class="toggle-knob"></div>
+    </div>
+    <span id="label-a">Annual</span>
+    <div class="save-badge">Save 20%</div>
+</div>
+
+<section class="pricing-grid">
+    <div class="vfx-card" data-tilt data-tilt-max="10">
+        <div class="card-inner">
+            <div class="card-icon-box">
+                <lord-icon src="https://cdn.lordicon.com/enzmyiaz.json" trigger="loop" delay="2000" colors="primary:#8a2be2" style="width:60px;height:60px"></lord-icon>
+            </div>
+            <h2 class="card-name">Doubt Class</h2>
+            <p class="card-desc">Instant AI-powered doubt resolution. Ask anything, anytime — get clear, adaptive explanations.</p>
+            
+            <div class="card-price">
+                <span class="price-amount"><span class="rupee">₹</span><span id="price-doubt">299</span></span>
+                <span class="price-period" id="period-m">/month</span>
+            </div>
+
+            <ul class="vfx-features">
+                <li><div class="dot"></div> Unlimited AI sessions</li>
+                <li><div class="dot"></div> Multi-subject coverage</li>
+                <li><div class="dot"></div> 24/7 Voice + Text</li>
+                <li class="disabled"><div class="dot"></div> Learning Path (ILP)</li>
+                <li class="disabled"><div class="dot"></div> RTAE Adaptive Lectures</li>
+            </ul>
+
+            <button class="vfx-btn btn-outline">Start for ₹299</button>
+        </div>
+    </div>
+
+    <div class="vfx-card popular-vfx" data-tilt data-tilt-scale="1.02">
+        <div class="led-border"></div>
+        <div class="card-inner">
+            <div class="popular-tag">MOST POPULAR</div>
+            <div class="card-icon-box">
+                <lord-icon src="https://cdn.lordicon.com/bgeuueob.json" trigger="loop" delay="1500" colors="primary:#ffffff" style="width:60px;height:60px"></lord-icon>
+            </div>
+            <h2 class="card-name">Full Platform</h2>
+            <p class="card-desc">The complete into3 adaptive system — ILP, Revision, Practice, and real-time neural adaptation.</p>
+            
+            <div class="card-price">
+                <span class="price-amount"><span class="rupee">₹</span><span id="price-full">1,499</span></span>
+                <span class="price-period" id="period-f">/month</span>
+            </div>
+
+            <ul class="vfx-features">
+                <li><div class="dot green-dot"></div> <b>Includes Doubt Class</b></li>
+                <li><div class="dot green-dot"></div> Individualized Path (ILP)</li>
+                <li><div class="dot green-dot"></div> RTAE Adaptive Lectures</li>
+                <li><div class="dot green-dot"></div> Smart Revision Engine</li>
+                <li><div class="dot green-dot"></div> Parent Dashboard</li>
+            </ul>
+
+            <button class="vfx-btn btn-gradient">Upgrade to Full AI</button>
+        </div>
+    </div>
+</section>
+
+<!-- COST COMPARISON -->
+<section style="max-width:860px;margin:0 auto;padding:0 20px 80px;position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:40px;">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--violet);padding:5px 16px;border:1px solid rgba(138,43,226,0.25);background:rgba(138,43,226,0.04);display:inline-block;margin-bottom:16px;">THE REAL MATH</div>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-1px;">What you're actually <span style="color:var(--vl);">saving.</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:stretch;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.05);">
+        <!-- Traditional -->
+        <div style="padding:36px 30px;background:rgba(255,255,255,0.02);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#444;margin-bottom:20px;">Traditional Tutoring</div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#666;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.03);">
+                    <span>Private tutor (2 subjects)</span><span style="color:#ff5f57;">₹5,000–8,000</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#666;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.03);">
+                    <span>Coaching class</span><span style="color:#ff5f57;">₹3,000–6,000</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#666;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.03);">
+                    <span>Doubt clearing (extra)</span><span style="color:#ff5f57;">₹500–1,000</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#666;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.03);">
+                    <span>Test series / mock exams</span><span style="color:#ff5f57;">₹500–1,500</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:13px;font-weight:700;color:#ccc;padding-top:6px;">
+                    <span>Total / month</span><span style="color:#ff5f57;">₹9,000–16,500</span>
+                </div>
+            </div>
+        </div>
+        <!-- VS divider -->
+        <div style="display:flex;align-items:center;justify-content:center;background:rgba(138,43,226,0.06);border-left:1px solid rgba(255,255,255,0.03);border-right:1px solid rgba(255,255,255,0.03);">
+            <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--vl);writing-mode:vertical-lr;letter-spacing:3px;">VS</span>
+        </div>
+        <!-- into3 -->
+        <div style="padding:36px 30px;background:rgba(138,43,226,0.03);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--violet);margin-bottom:20px;">into3.ai Full Platform</div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#888;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.03);">
+                    <span>All subjects covered</span><span style="color:#00ff9d;">Included</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#888;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.03);">
+                    <span>AI adaptive lectures</span><span style="color:#00ff9d;">Included</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#888;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.03);">
+                    <span>Unlimited doubt clearing</span><span style="color:#00ff9d;">Included</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#888;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.03);">
+                    <span>Exams, revision, mental wellness</span><span style="color:#00ff9d;">Included</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:13px;font-weight:700;color:#fff;padding-top:6px;">
+                    <span>Total / month</span><span style="color:#00ff9d;font-size:1.1rem;">₹1,499</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Savings callout -->
+    <div style="text-align:center;margin-top:24px;padding:18px 24px;border-radius:12px;border:1px solid rgba(0,255,157,0.15);background:rgba(0,255,157,0.03);">
+        <span style="font-family:var(--mono);font-size:13px;color:#00ff9d;font-weight:700;">Save ₹7,500–15,000 every month</span>
+        <span style="font-family:var(--mono);font-size:11px;color:#555;margin-left:10px;">— and get smarter, adaptive learning your tutor can't match.</span>
+    </div>
+</section>
+
+<section class="faq-section">
+    <h2 class="faq-title">Questions?</h2>
+    <div class="faq-item">
+        <div class="faq-q"><span>Can I upgrade later?</span> <span class="faq-toggle">+</span></div>
+        <div class="faq-a"><p>Yes. You can switch from Doubt Class to the Full Platform at any time. Your history and progress stay intact.</p></div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q"><span>Is there a free trial?</span> <span class="faq-toggle">+</span></div>
+        <div class="faq-a"><p>We offer a 30-day full access trial for all new accounts so you can experience RTAE technology firsthand.</p></div>
+    </div>
+</section>
+
+<script>
+    // Entrance Animations
+    gsap.from(".pricing-title", { duration: 1, y: 50, opacity: 0, ease: "expo.out" });
+    gsap.from(".vfx-card", { duration: 1.2, y: 100, opacity: 0, stagger: 0.2, ease: "expo.out", delay: 0.2 });
+
+    // Billing Logic
+    const toggle = document.getElementById('billing-toggle');
+    const priceD = document.getElementById('price-doubt');
+    const priceF = document.getElementById('price-full');
+    let isAnnual = false;
+
+    toggle.addEventListener('click', () => {
+        isAnnual = !isAnnual;
+        toggle.classList.toggle('active');
+        document.getElementById('label-m').classList.toggle('active');
+        document.getElementById('label-a').classList.toggle('active');
+        
+        if(isAnnual) {
+            priceD.innerText = "2,870";
+            priceF.innerText = "14,390";
+            document.querySelectorAll('.price-period').forEach(p => p.innerText = "/year");
+        } else {
+            priceD.innerText = "299";
+            priceF.innerText = "1,499";
+            document.querySelectorAll('.price-period').forEach(p => p.innerText = "/month");
+        }
+    });
+
+    // FAQ Logic
+    document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.parentElement;
+            item.classList.toggle('open');
+            q.querySelector('.faq-toggle').innerText = item.classList.contains('open') ? "−" : "+";
+        });
+    });
+
+    // Particle VFX
+    const canvas = document.getElementById('pricing-particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function init() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = [];
+        for(let i=0; i<30; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                speedX: (Math.random() - 0.5) * 0.5,
+                speedY: (Math.random() - 0.5) * 0.5
+            });
+        }
+    }
+    function animate() {
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+        particles.forEach(p => {
+            ctx.fillStyle = "rgba(138, 43, 226, 0.3)";
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+            ctx.fill();
+            p.x += p.speedX; p.y += p.speedY;
+            if(p.x > canvas.width) p.x = 0; if(p.y > canvas.height) p.y = 0;
+        });
+        requestAnimationFrame(animate);
+    }
+    window.addEventListener('resize', init);
+    init(); animate();
+</script>
+
+</body>
+</html>

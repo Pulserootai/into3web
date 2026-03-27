@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1S0R5L8N3Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1S0R5L8N3Y');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>About Us — into3.ai | The Team Behind Adaptive Learning</title>
+    <meta name="description" content="Meet the team behind into3.ai — an adaptive learning platform founded by Abhinandan Kumar. Our story, beliefs, and mission.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://into3.ai/about.html">
+    <meta name="theme-color" content="#050508">
+    <meta name="color-scheme" content="dark">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="into3.ai">
+    <meta property="og:title" content="About Us — into3.ai">
+    <meta property="og:description" content="The team behind adaptive learning. Founded by Abhinandan Kumar.">
+    <meta property="og:url" content="https://into3.ai/about.html">
+    <meta property="og:image" content="https://into3.ai/og-image.jpg">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@into3ai">
+    <meta name="twitter:title" content="About Us — into3.ai">
+    <meta name="twitter:description" content="The team building AI adaptive learning for every child.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dbbwqu5qi/image/upload/v1770751935/White_Logo_vmwb0d.svg">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #050508;
+            --white: #f5f5f7;
+            --violet: #8a2be2;
+            --violet-light: #c084fc;
+            --violet-glow: rgba(138, 43, 226, 0.15);
+            --mono: 'IBM Plex Mono', monospace;
+            --sans: 'Helvetica Neue', 'Outfit', Arial, sans-serif;
+            --max-w: 1100px;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: var(--sans);
+            overflow-x: hidden;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Particle Canvas ── */
+        #particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── Nav ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 18px 48px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5, 5, 8, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-link {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: var(--violet-light); }
+        .nav-link.active { color: var(--violet-light); }
+
+        /* ── Hamburger ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* ── Sections ── */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 120px 48px;
+        }
+        .section-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+        .tag {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--violet-light);
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+            font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: -2px;
+            max-width: 800px;
+            margin: 0 auto 28px;
+        }
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* ── Origin Story ── */
+        .origin {
+            background: transparent;
+        }
+        .origin-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.4fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .origin-text p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 24px;
+            line-height: 1.85;
+        }
+        .origin-text p strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+        .origin-deco {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+        .origin-deco-ring {
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            position: absolute;
+            animation: ringPulse 4s ease-in-out infinite;
+        }
+        .origin-deco-ring:nth-child(2) {
+            width: 260px; height: 260px;
+            animation-delay: 1s;
+            border-color: rgba(192, 132, 252, 0.12);
+        }
+        .origin-deco-ring:nth-child(3) {
+            width: 140px; height: 140px;
+            animation-delay: 2s;
+            border-color: rgba(138, 43, 226, 0.3);
+        }
+        .origin-deco-dot {
+            width: 10px; height: 10px;
+            background: var(--violet);
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--violet), 0 0 60px rgba(138, 43, 226, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.08); opacity: 1; }
+        }
+
+        /* ── Beliefs ── */
+        .beliefs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 56px;
+        }
+        .belief-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 12px;
+            padding: 40px 32px;
+            transition: all 0.4s ease;
+        }
+        .belief-card:hover {
+            border-color: var(--violet);
+            background: rgba(138, 43, 226, 0.04);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 40px rgba(138, 43, 226, 0.1);
+        }
+        .belief-card .belief-quote {
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            color: var(--white);
+        }
+        .belief-card .belief-body {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.75;
+        }
+
+        /* ── Team ── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 56px;
+        }
+        .team-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 36px 32px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s ease;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        .team-card:hover {
+            border-color: rgba(138, 43, 226, 0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(138, 43, 226, 0.08);
+        }
+        .team-card.founder-card {
+            grid-column: 1 / -1;
+            border-color: rgba(138, 43, 226, 0.25);
+            background: rgba(138, 43, 226, 0.03);
+        }
+        .team-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--violet), var(--violet-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--sans);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .team-info { flex: 1; }
+        .team-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .team-role {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--violet-light);
+            margin-bottom: 12px;
+        }
+        .team-bio {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+        .team-linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .team-linkedin:hover { color: var(--violet-light); }
+        .team-linkedin svg {
+            width: 14px; height: 14px;
+            fill: currentColor;
+        }
+
+        /* ── Responsibility ── */
+        .responsibility {
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .responsibility p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.85;
+            max-width: 780px;
+            margin-bottom: 20px;
+        }
+        .responsibility .compliance-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+        .compliance-tag {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 6px;
+            color: var(--violet-light);
+        }
+        .privacy-link {
+            color: var(--violet-light);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(192, 132, 252, 0.3);
+            transition: border-color 0.3s;
+        }
+        .privacy-link:hover {
+            border-color: var(--violet-light);
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center;
+            padding: 100px 48px 120px;
+        }
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin-bottom: 36px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-btn {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 6px;
+            transition: all 0.35s ease;
+        }
+        .cta-btn.primary {
+            background: var(--violet);
+            color: #fff;
+            border: 1px solid var(--violet);
+        }
+        .cta-btn.primary:hover {
+            background: #9b3af0;
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.3);
+        }
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .cta-btn.secondary:hover {
+            border-color: var(--violet-light);
+            color: var(--violet-light);
+        }
+
+        /* ── Footer ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 40px 48px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        footer .copyright {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Reveal helper ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .nav { padding: 16px 24px; }
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(5, 5, 8, 0.97);
+                backdrop-filter: blur(24px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 32px;
+                transition: right 0.4s ease;
+                z-index: 200;
+            }
+            .nav-links.open { right: 0; }
+            .hamburger { display: flex; z-index: 300; }
+
+            section { padding: 80px 24px; }
+
+            .hero { min-height: 90vh; padding-top: 100px; }
+            .hero h1 { letter-spacing: -1px; }
+
+            .origin-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .origin-deco { min-height: 160px; }
+
+            .beliefs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-card { flex-direction: column; gap: 16px; }
+
+            .cta-section { padding: 80px 24px 100px; }
+
+            footer {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Particle Canvas -->
+<canvas id="particles"></canvas>
+
+<!-- Nav -->
+<nav class="nav">
+    <a href="index.html"><img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai logo" style="height:26px;width:auto;display:block;"></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="price-page.html" class="nav-link">Pricing</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+</nav>
+
+<!-- SECTION 1: Hero -->
+<section class="hero">
+    <div class="section-inner">
+        <span class="tag reveal">Our Story</span>
+        <h1 class="reveal">We didn't start with a product. We started with a question.</h1>
+        <p class="subtitle reveal">Why does education still feel broken — even with all our technology?</p>
+    </div>
+</section>
+
+<!-- SECTION 2: The Origin Story -->
+<section class="origin">
+    <div class="section-inner">
+        <div class="origin-grid">
+            <div class="origin-text">
+                <span class="tag reveal">The Beginning</span>
+                <p class="reveal"><strong>Abhinandan Kumar</strong> spent over a decade at the intersection of artificial intelligence and human systems. From studying aeronautical engineering to founding AI companies — Ginnie AI and Zapnosys AI — he kept returning to the same uncomfortable question: if AI can personalize everything from the music we hear to the medicine we take, why is education still one-size-fits-all?</p>
+                <p class="reveal">The answer wasn't a lack of technology. It was a lack of understanding. Education technology had been built to digitize the classroom — not to reimagine it. Platforms delivered content. They didn't listen. They didn't adapt. They treated every child the same, just on a screen instead of a blackboard.</p>
+                <p class="reveal">The turning point came from neuroscience: <strong>neural adaptation</strong> — the brain's tendency to stop paying attention to things that don't change. Traditional education is fundamentally static. The same lecture, the same pace, the same tone for every child. But the brain needs movement. It needs novelty. It needs to feel that what it's learning is alive.</p>
+                <p class="reveal"><strong>into3.ai was born from that single insight.</strong> Build an intelligence layer for education that watches how a child learns — tracking micro-signals of engagement, confusion, fatigue, and curiosity — and adapts how it teaches. Not after a test. Not after a semester. Every second, in real time.</p>
+            </div>
+            <div class="origin-deco reveal">
+                <div class="origin-deco-ring"></div>
+                <div class="origin-deco-ring"></div>
+                <div class="origin-deco-ring"></div>
+                <div class="origin-deco-dot"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: What We Believe -->
+<section class="beliefs">
+    <div class="section-inner">
+        <span class="tag reveal">What We Believe</span>
+        <div class="beliefs-grid">
+            <div class="belief-card reveal">
+                <div class="belief-quote">"Children aren't failing. Systems are."</div>
+                <div class="belief-body">Education was designed for industrial efficiency, not individual minds. When a child struggles, the system should change — not the child.</div>
+            </div>
+            <div class="belief-card reveal">
+                <div class="belief-quote">"Technology should serve the learner, not surveil them."</div>
+                <div class="belief-body">We track learning signals, not personal lives. How a child engages with content tells us everything we need. Privacy is non-negotiable.</div>
+            </div>
+            <div class="belief-card reveal">
+                <div class="belief-quote">"Every child deserves a system that adapts to them."</div>
+                <div class="belief-body">Not one lecture for millions. Not a playlist of videos. A system that genuinely changes — its tone, its pace, its approach — for each mind it meets.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 4: The Team -->
+<section class="team">
+    <div class="section-inner">
+        <span class="tag reveal">The Team</span>
+        <h2 class="reveal" style="font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;letter-spacing:-1.5px;margin-top:8px;">The people building this.</h2>
+        <div class="team-grid">
+
+            <!-- Founder -->
+            <div class="team-card founder-card reveal">
+                <div class="team-avatar">AK</div>
+                <div class="team-info">
+                    <div class="team-name">Abhinandan Kumar</div>
+                    <div class="team-role">Founder & CEO</div>
+                    <div class="team-bio">B.Tech Aeronautical + MBA (IIPM). 12+ years building AI companies. Founded Ginnie AI (2018-2022), co-founded Zapnosys AI (2023-2025). Deeply focused on AI systems that understand human cognition.</div>
+                    <a href="https://www.linkedin.com/in/abhinandankumar-ai" target="_blank" rel="noopener noreferrer" class="team-linkedin">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bhupesh -->
+            <div class="team-card reveal">
+                <div class="team-avatar">BS</div>
+                <div class="team-info">
+                    <div class="team-name">Bhupesh Sarangal</div>
+                    <div class="team-role">Head of Marketing & GTM</div>
+                    <div class="team-bio">18+ years in enterprise sales & business development. Previously VP at Regenesys, Director B2B at Vedantu, National Sales Manager at Prometric. IIM Rohtak alumnus. Transforms businesses through strategic storytelling and digital-first growth models.</div>
+                    <a href="https://www.linkedin.com/in/bhupesh-sarangal-9a1b723/" target="_blank" rel="noopener noreferrer" class="team-linkedin">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <!-- Alok -->
+            <div class="team-card reveal">
+                <div class="team-avatar">AS</div>
+                <div class="team-info">
+                    <div class="team-name">Alok Singh</div>
+                    <div class="team-role">Engineering Lead</div>
+                    <div class="team-bio">13+ years driving technological transformation across cloud, DevOps, and AI systems. B.Tech CS, Amity University. Previously Technical Architect at Persistent Systems and Synechron. Expert in AWS, Azure, React, Python, Kubernetes, and ML pipelines. Leads the RTAE engine architecture and into3's real-time cognitive infrastructure.</div>
+                    <a href="https://www.linkedin.com/in/alok-singh-3b51621b" target="_blank" rel="noopener noreferrer" class="team-linkedin">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <!-- Saumya -->
+            <div class="team-card reveal">
+                <div class="team-avatar">SS</div>
+                <div class="team-info">
+                    <div class="team-name">Saumya Sharma</div>
+                    <div class="team-role">Pedagogy & Content Head</div>
+                    <div class="team-bio">16+ years transforming K-12 education. M.Sc Zoology, Diploma in Guidance & Counselling from Jamia Millia Islamia, CTET certified. Previously Curriculum Manager at Sri Aurobindo Society, Team Lead at Tutorix, Plus Educator at Unacademy. Expert in competency-based learning, e-learning design, and teacher training. Bridges cognitive science with AI-powered content assembly.</div>
+                    <a href="https://www.linkedin.com/in/saumya-gaur-779352175" target="_blank" rel="noopener noreferrer" class="team-linkedin">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 5: Responsibility -->
+<section class="responsibility">
+    <div class="section-inner">
+        <span class="tag reveal">Our Responsibility</span>
+        <h2 class="reveal" style="font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;letter-spacing:-1.5px;margin-top:8px;margin-bottom:28px;">A young brand. A deep responsibility.</h2>
+        <p class="reveal">We are a young company — and we are building for children. We carry that weight with us every single day. Every architectural decision, every data flow, every algorithm is designed with one non-negotiable principle: the child comes first.</p>
+        <p class="reveal">We do not monetize attention. We do not sell data. We do not build addictive loops. We build systems that make learning feel natural, then get out of the way. Our platform is built to comply with <strong style="color:var(--white)">COPPA</strong>, <strong style="color:var(--white)">GDPR-K</strong>, and India's <strong style="color:var(--white)">DPDP Act</strong> — because protecting children's data isn't a feature, it's a foundation. <a href="privacy.html" class="privacy-link">Read our full privacy commitment</a>.</p>
+        <div class="compliance-tags reveal">
+            <span class="compliance-tag">COPPA Compliant</span>
+            <span class="compliance-tag">GDPR-K Compliant</span>
+            <span class="compliance-tag">DPDP Act Compliant</span>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 6: CTA -->
+<section class="cta-section">
+    <div class="section-inner">
+        <span class="tag reveal">Join Us</span>
+        <h2 class="reveal">Want to join the mission?</h2>
+        <div class="cta-buttons reveal">
+            <a href="careers.html" class="cta-btn primary">View Open Roles</a>
+            <a href="contact.html" class="cta-btn secondary">Get in Touch</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <a href="index.html"><img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai" style="height:22px;width:auto;display:block;"></a>
+    <span class="copyright">&copy; 2025 into3.ai. All rights reserved.</span>
+</footer>
+
+<script>
+/* ── Particle Canvas ── */
+(function() {
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+
+    function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight * 3;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function createParticles() {
+        particles = [];
+        const count = Math.min(Math.floor(w * h / 18000), 120);
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: Math.random() * 1.5 + 0.5,
+                dx: (Math.random() - 0.5) * 0.3,
+                dy: (Math.random() - 0.5) * 0.15,
+                alpha: Math.random() * 0.4 + 0.1,
+                pulse: Math.random() * Math.PI * 2
+            });
+        }
+    }
+    createParticles();
+
+    var animId;
+    function draw() {
+        ctx.clearRect(0, 0, w, h);
+        const scrollY = window.scrollY || 0;
+        particles.forEach(p => {
+            p.x += p.dx;
+            p.y += p.dy;
+            p.pulse += 0.01;
+            if (p.x < 0) p.x = w;
+            if (p.x > w) p.x = 0;
+            if (p.y < 0) p.y = h;
+            if (p.y > h) p.y = 0;
+
+            const screenY = p.y - scrollY;
+            if (screenY < -50 || screenY > window.innerHeight + 50) return;
+
+            const a = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
+            ctx.beginPath();
+            ctx.arc(p.x, screenY, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(138, 43, 226, ${a})`;
+            ctx.fill();
+        });
+        animId = requestAnimationFrame(draw);
+    }
+    draw();
+    window.addEventListener('beforeunload', function() { if (animId) cancelAnimationFrame(animId); });
+})();
+
+/* ── Mobile Nav ── */
+document.getElementById('hamburger').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+});
+
+/* ── GSAP ScrollTrigger Animations ── */
+gsap.registerPlugin(ScrollTrigger);
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+    gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+        },
+        delay: el.closest('.beliefs-grid') || el.closest('.team-grid')
+            ? (Array.from(el.parentElement.children).indexOf(el)) * 0.12
+            : 0
+    });
+});
+</script>
+
+</body>
+</html>

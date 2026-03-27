@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1S0R5L8N3Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1S0R5L8N3Y');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Accessibility — into3.ai</title>
+    <meta name="description" content="into3.ai is committed to digital accessibility. WCAG 2.1 Level AA conformance and assistive technology support.">
+    <meta name="keywords" content="into3 accessibility, WCAG 2.1, accessible learning platform, screen reader support, adaptive learning accessibility">
+    <meta name="author" content="into3.ai">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://into3.ai/accessibility.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="into3.ai">
+    <meta property="og:title" content="Accessibility Statement — into3.ai">
+    <meta property="og:description" content="Our commitment to making AI-powered adaptive learning accessible to every student.">
+    <meta property="og:url" content="https://into3.ai/accessibility.html">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:image" content="https://into3.ai/og-image.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@into3ai">
+    <meta name="twitter:title" content="Accessibility — into3.ai">
+
+    <!-- Additional -->
+    <meta name="theme-color" content="#050508">
+    <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dbbwqu5qi/image/upload/v1770751935/White_Logo_vmwb0d.svg">
+
+    <!-- Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg:#050508; --violet:#8a2be2; --vl:#c084fc; --mono:'IBM Plex Mono',monospace; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:#fff; font-family:'Helvetica Neue',Arial,sans-serif; overflow-x:hidden; min-height:100vh; }
+
+        /* ═══ SKIP LINK ═══ */
+        .skip-link {
+            position:absolute; top:-100%; left:16px;
+            padding:10px 18px; background:var(--violet); color:#fff;
+            font-family:var(--mono); font-size:12px; text-decoration:none;
+            border-radius:0 0 6px 6px; z-index:1000;
+            transition:top 0.2s;
+        }
+        .skip-link:focus { top:0; }
+
+        /* ═══ NAV BAR ═══ */
+        .a11y-nav {
+            padding:20px 50px; display:flex; justify-content:space-between; align-items:center;
+            border-bottom:1px solid #111;
+        }
+        .a11y-nav-back {
+            font-family:var(--mono); font-size:10px; letter-spacing:2px;
+            text-transform:uppercase; color:#555; text-decoration:none;
+            padding:8px 18px; border:1px solid rgba(255,255,255,0.08);
+            border-radius:4px; transition:all 0.3s;
+        }
+        .a11y-nav-back:hover { border-color:var(--violet); color:var(--vl); }
+
+        /* ═══ MAIN CONTENT ═══ */
+        .a11y-page {
+            max-width:800px; margin:0 auto; padding:60px 50px 80px;
+        }
+
+        .a11y-label {
+            display:inline-block; font-family:var(--mono); font-size:9px;
+            letter-spacing:4px; text-transform:uppercase; color:var(--violet);
+            padding:5px 14px; border:1px solid rgba(138,43,226,0.25);
+            background:rgba(138,43,226,0.04); margin-bottom:20px;
+        }
+        .a11y-title {
+            font-size:clamp(1.6rem,3vw,2.2rem); font-weight:800;
+            letter-spacing:-1px; margin-bottom:10px;
+        }
+        .a11y-title span { color:var(--vl); }
+        .a11y-sub {
+            font-family:var(--mono); font-size:12px; color:#555;
+            margin-bottom:48px; line-height:1.6;
+        }
+
+        .a11y-section { margin-bottom:40px; }
+        .a11y-section h2 {
+            font-size:1.15rem; font-weight:700; color:var(--vl);
+            margin-bottom:12px; letter-spacing:-0.3px;
+        }
+        .a11y-section p, .a11y-section li {
+            font-size:14px; color:#aaa; line-height:1.85;
+        }
+        .a11y-section p { margin-bottom:10px; }
+        .a11y-section ul {
+            list-style:none; padding-left:0; margin-top:8px;
+        }
+        .a11y-section ul li {
+            position:relative; padding-left:20px; margin-bottom:6px;
+        }
+        .a11y-section ul li::before {
+            content:''; position:absolute; left:0; top:10px;
+            width:6px; height:6px; border-radius:50%;
+            background:var(--violet);
+        }
+
+        .a11y-section a {
+            color:var(--vl); text-decoration:none;
+            border-bottom:1px solid rgba(192,132,252,0.3);
+            transition:border-color 0.3s;
+        }
+        .a11y-section a:hover { border-color:var(--vl); }
+
+        .a11y-divider {
+            border:none; border-top:1px solid rgba(255,255,255,0.05);
+            margin:40px 0;
+        }
+
+        .a11y-effective {
+            font-family:var(--mono); font-size:10px; color:#333;
+            letter-spacing:2px; text-transform:uppercase;
+            margin-top:48px; padding-top:24px;
+            border-top:1px solid rgba(255,255,255,0.05);
+        }
+
+        /* ═══ FOOTER MINI ═══ */
+        .a11y-footer {
+            max-width:800px; margin:0 auto; padding:30px 50px;
+            border-top:1px solid #111;
+            display:flex; justify-content:space-between; align-items:center;
+        }
+        .af-copy { font-family:var(--mono); font-size:9px; color:#333; }
+
+        @media(max-width:700px) {
+            .a11y-nav { padding:16px 28px; }
+            .a11y-page { padding:40px 28px 60px; }
+            .a11y-footer { padding:24px 28px; flex-direction:column; gap:10px; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- NAV -->
+<nav class="a11y-nav" aria-label="Page navigation">
+    <a href="index.html"><img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai logo" style="height:26px;width:auto;display:block;"></a>
+    <a href="index.html" class="a11y-nav-back">&larr; Back to Home</a>
+</nav>
+
+<main class="a11y-page" id="main-content">
+
+    <div class="a11y-label">Accessibility</div>
+    <h1 class="a11y-title">Accessibility <span>Statement</span></h1>
+    <p class="a11y-sub">into3.ai is committed to ensuring that every student can learn without barriers.</p>
+
+    <!-- 1. Commitment -->
+    <section class="a11y-section">
+        <h2>Our Commitment to Accessibility</h2>
+        <p>into3.ai believes that education is a right, not a privilege. We are committed to providing an inclusive learning experience for all students aged 11&ndash;18 across India, regardless of ability. Our team works continuously to ensure our platform meets or exceeds accessibility standards so every learner can benefit from AI-powered adaptive education.</p>
+    </section>
+
+    <!-- 2. Conformance Status -->
+    <section class="a11y-section">
+        <h2>Conformance Status</h2>
+        <p>We are actively working toward conformance with the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong>. While we have not yet achieved full conformance, accessibility is a core part of our development process, and we are making steady progress toward meeting all applicable success criteria.</p>
+    </section>
+
+    <hr class="a11y-divider">
+
+    <!-- 3. What We Currently Support -->
+    <section class="a11y-section">
+        <h2>What We Currently Support</h2>
+        <ul>
+            <li>Keyboard navigation across the entire platform</li>
+            <li>Screen reader compatibility with ARIA labels and semantic HTML</li>
+            <li>Sufficient color contrast ratios throughout the interface</li>
+            <li>Responsive design that adapts to all screen sizes</li>
+            <li>Alt text on all meaningful images</li>
+            <li>Skip-to-content links for faster navigation</li>
+            <li>Properly labeled forms and accessible form controls</li>
+            <li>Visible focus indicators on interactive elements</li>
+        </ul>
+    </section>
+
+    <!-- 4. Known Limitations -->
+    <section class="a11y-section">
+        <h2>Known Limitations</h2>
+        <p>We acknowledge the following areas where accessibility may be limited:</p>
+        <ul>
+            <li>Some interactive animations may not be fully accessible to all assistive technologies</li>
+            <li>Canvas-based particle effects are decorative only and do not convey content</li>
+            <li>Certain third-party embedded content may not fully meet our accessibility standards</li>
+        </ul>
+        <p>We are actively working to address these limitations and welcome feedback on any barriers you encounter.</p>
+    </section>
+
+    <hr class="a11y-divider">
+
+    <!-- 5. Adaptive Learning & Accessibility -->
+    <section class="a11y-section">
+        <h2>Adaptive Learning &amp; Accessibility</h2>
+        <p>Our Real-Time Adaptive Engine (RTAE) personalizes the learning experience based on each student's individual needs, pace, and performance. We are currently developing enhanced accessibility modes within the RTAE to better serve students who use assistive technologies, ensuring that adaptive content delivery works seamlessly with screen readers and alternative input devices.</p>
+    </section>
+
+    <!-- 6. Browser & Device Support -->
+    <section class="a11y-section">
+        <h2>Browser &amp; Device Support</h2>
+        <p>into3.ai is designed to work across modern browsers and devices:</p>
+        <ul>
+            <li>Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge</li>
+            <li>Desktop, tablet, and mobile devices</li>
+        </ul>
+        <p>For the best accessible experience, we recommend using the latest version of your preferred browser with up-to-date assistive technology.</p>
+    </section>
+
+    <hr class="a11y-divider">
+
+    <!-- 7. Feedback & Contact -->
+    <section class="a11y-section">
+        <h2>Feedback &amp; Contact</h2>
+        <p>If you encounter any accessibility barriers or have suggestions for improvement, we want to hear from you. Please reach out to us at <a href="mailto:accessibility@into3.ai">accessibility@into3.ai</a>. We aim to respond to accessibility-related inquiries within two business days.</p>
+    </section>
+
+    <!-- 8. Continuous Improvement -->
+    <section class="a11y-section">
+        <h2>Continuous Improvement</h2>
+        <p>Accessibility is not a one-time effort. We conduct regular accessibility audits, integrate user testing with assistive technologies into our development cycle, and train our team on inclusive design practices. Each platform update is evaluated for accessibility impact before release.</p>
+    </section>
+
+    <!-- 9. Third-Party Content -->
+    <section class="a11y-section">
+        <h2>Third-Party Content</h2>
+        <p>Our platform may include content, tools, or integrations from third-party providers. While we strive to select partners who share our commitment to accessibility, we cannot guarantee that all third-party content meets WCAG 2.1 Level AA standards. We encourage users to report any issues with third-party content so we can work with our partners to improve the experience.</p>
+    </section>
+
+    <!-- 10. Effective Date -->
+    <div class="a11y-effective">Effective date: March 26, 2026</div>
+
+</main>
+
+<!-- MINI FOOTER -->
+<footer class="a11y-footer">
+    <div><img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai" style="height:22px;width:auto;display:block;"></div>
+    <div class="af-copy">&copy; 2026 into3.ai. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

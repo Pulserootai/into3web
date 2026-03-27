@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1S0R5L8N3Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1S0R5L8N3Y');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ====== PRIMARY SEO ====== -->
+    <title>Blog — into3.ai | AI & Education Insights</title>
+    <meta name="description" content="Insights on AI, adaptive learning, neuroscience, and the future of education — from the into3.ai team. Research, perspectives, and product updates.">
+    <meta name="keywords" content="AI education blog, adaptive learning insights, neuroscience education, into3 blog, edtech articles, personalized learning research">
+    <meta name="author" content="into3.ai">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://into3.ai/blog.html">
+
+    <!-- ====== OPEN GRAPH ====== -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="into3.ai">
+    <meta property="og:title" content="Blog — into3.ai | AI & Education Insights">
+    <meta property="og:description" content="Insights on AI, adaptive learning, neuroscience, and the future of education — from the into3.ai team.">
+    <meta property="og:url" content="https://into3.ai/blog.html">
+    <meta property="og:image" content="https://into3.ai/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="into3.ai Blog — Insights on AI & Education">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- ====== TWITTER CARD ====== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@into3ai">
+    <meta name="twitter:creator" content="@into3ai">
+    <meta name="twitter:title" content="Blog — into3.ai | AI & Education Insights">
+    <meta name="twitter:description" content="Insights on AI, adaptive learning, neuroscience, and the future of education — from the into3.ai team.">
+    <meta name="twitter:image" content="https://into3.ai/og-image.jpg">
+    <meta name="twitter:image:alt" content="into3.ai Blog">
+
+    <!-- ====== THEME ====== -->
+    <meta name="theme-color" content="#050508">
+    <meta name="color-scheme" content="dark">
+
+    <!-- ====== FAVICON ====== -->
+    <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dbbwqu5qi/image/upload/v1770751935/White_Logo_vmwb0d.svg">
+    <link rel="apple-touch-icon" href="https://res.cloudinary.com/dbbwqu5qi/image/upload/v1770751935/White_Logo_vmwb0d.svg">
+
+    <!-- ====== FONTS ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- ====== GSAP ====== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <style>
+        /* ====== RESET & BASE ====== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #050508;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* ====== PARTICLE CANVAS ====== */
+        #particle-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ====== NAV ====== */
+        #main-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            height: 64px;
+            background: rgba(5, 5, 8, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: background 0.3s;
+        }
+        .nav-left { display: flex; align-items: center; }
+        .nav-logo-wrap { display: flex; align-items: center; }
+        .nav-logo-img { height: 26px; width: auto; display: block; }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.25s;
+        }
+        .nav-link:hover { color: #c084fc; }
+        .nav-link.active { color: #c084fc; }
+        .nav-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* ====== PAGE WRAPPER ====== */
+        .page-wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ====== HERO ====== */
+        .blog-hero {
+            padding: 140px 0 60px;
+            text-align: center;
+        }
+        .blog-hero-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #c084fc;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .blog-hero-headline {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .blog-hero-sub {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ====== FEATURED ARTICLE ====== */
+        .featured-article {
+            margin-bottom: 56px;
+        }
+        .featured-card {
+            display: block;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 48px;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s, border-color 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, #8a2be2, #c084fc, #00ff9d);
+        }
+        .featured-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.15);
+            border-color: rgba(138, 43, 226, 0.3);
+        }
+        .featured-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .featured-category {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 5px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .cat-neuroscience { background: rgba(138, 43, 226, 0.2); color: #c084fc; }
+        .cat-education { background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.8); }
+        .cat-ai { background: rgba(138, 43, 226, 0.2); color: #c084fc; }
+        .cat-technology { background: rgba(100, 149, 237, 0.2); color: #6495ed; }
+        .cat-impact { background: rgba(0, 255, 157, 0.15); color: #00ff9d; }
+
+        .featured-title {
+            font-size: clamp(24px, 3vw, 34px);
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            transition: color 0.3s;
+        }
+        .featured-card:hover .featured-title { color: #c084fc; }
+        .featured-excerpt {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 700px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .featured-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.35);
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ====== ARTICLE GRID ====== */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+        .article-card {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 32px;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s, border-color 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .article-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(138, 43, 226, 0.12);
+            border-color: rgba(138, 43, 226, 0.25);
+        }
+        .article-category {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+        .article-title {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+        .article-card:hover .article-title { color: #c084fc; }
+        .article-excerpt {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.65;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .article-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+            display: flex;
+            gap: 16px;
+            margin-top: auto;
+        }
+
+        /* ====== NEWSLETTER CTA ====== */
+        .newsletter-section {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .newsletter-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .newsletter-sub {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 32px;
+        }
+        .newsletter-form {
+            display: flex;
+            max-width: 460px;
+            margin: 0 auto 24px;
+            gap: 8px;
+        }
+        .newsletter-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 14px 18px;
+            color: #fff;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .newsletter-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+        .newsletter-input:focus { border-color: #8a2be2; }
+        .newsletter-btn {
+            background: linear-gradient(135deg, #8a2be2, #c084fc);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 28px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+            white-space: nowrap;
+        }
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(138, 43, 226, 0.3);
+        }
+        .coming-soon-note {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* ====== FOOTER ====== */
+        .blog-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .footer-logo-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .footer-logo-text .logo-3 { color: #c084fc; }
+        .footer-logo-text .logo-dot { color: #00ff9d; }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+        .footer-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.25s;
+        }
+        .footer-link:hover { color: #c084fc; }
+        .footer-copy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ====== MOBILE ====== */
+        @media (max-width: 768px) {
+            #main-nav { padding: 0 20px; }
+            .nav-hamburger { display: flex; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0; right: 0;
+                background: rgba(5, 5, 8, 0.97);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 24px 20px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            }
+            .nav-menu.open { display: flex; }
+            .blog-hero { padding: 110px 0 40px; }
+            .featured-card { padding: 28px; }
+            .featured-title { font-size: 22px; }
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .article-card { padding: 24px; }
+            .newsletter-form { flex-direction: column; }
+            .newsletter-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====== PARTICLE CANVAS ====== -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- ====== NAV ====== -->
+<nav id="main-nav" aria-label="Main navigation">
+    <div class="nav-left">
+        <a href="index.html" class="nav-logo-wrap" aria-label="into3.ai — Go to homepage">
+            <img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai" class="nav-logo-img" style="height:26px;width:auto;display:block;">
+        </a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu" role="menubar">
+        <a href="index.html" class="nav-link" role="menuitem">Home</a>
+        <a href="features.html" class="nav-link" role="menuitem">Features</a>
+        <a href="price-page.html" class="nav-link" role="menuitem">Pricing</a>
+        <a href="contact.html" class="nav-link" role="menuitem">Contact</a>
+    </div>
+</nav>
+
+<!-- ====== MAIN CONTENT ====== -->
+<main class="page-wrap">
+
+    <!-- Hero -->
+    <section class="blog-hero">
+        <div class="blog-hero-tag">INSIGHTS</div>
+        <h1 class="blog-hero-headline">Thoughts on learning, AI, and building what's next.</h1>
+        <p class="blog-hero-sub">From the into3 team — research, perspectives, and updates.</p>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="featured-article">
+        <a href="blog/why-your-childs-brain-stops-paying-attention.html" class="featured-card" data-animate="featured">
+            <div class="featured-label">Featured</div>
+            <div class="featured-category cat-neuroscience">NEUROSCIENCE</div>
+            <h2 class="featured-title">Why Your Child's Brain Stops Paying Attention — And What We Can Do About It</h2>
+            <p class="featured-excerpt">Neural adaptation is the reason static teaching fails. Your brain literally stops seeing things that don't change. Here's the science — and how adaptive AI solves it.</p>
+            <div class="featured-meta">
+                <span>March 20, 2026</span>
+                <span>6 min read</span>
+            </div>
+        </a>
+    </section>
+
+    <!-- Article Grid -->
+    <section class="articles-grid">
+
+        <a href="blog/the-problem-with-one-size-fits-all-education.html" class="article-card" data-animate="card">
+            <div class="article-category cat-education">EDUCATION</div>
+            <h3 class="article-title">The Problem with One-Size-Fits-All Education</h3>
+            <p class="article-excerpt">Every child thinks differently. So why does every child get the same lecture? We break down why personalization isn't a luxury — it's a necessity.</p>
+            <div class="article-meta">
+                <span>March 15, 2026</span>
+                <span>4 min read</span>
+            </div>
+        </a>
+
+        <a href="blog/what-are-cognitive-markers.html" class="article-card" data-animate="card">
+            <div class="article-category cat-ai">AI &amp; LEARNING</div>
+            <h3 class="article-title">What Are Cognitive Markers — And Why Do They Matter?</h3>
+            <p class="article-excerpt">into3 tracks 27 cognitive markers per student. But what are they, and how do they shape your child's learning path? A plain-language explainer.</p>
+            <div class="article-meta">
+                <span>March 10, 2026</span>
+                <span>5 min read</span>
+            </div>
+        </a>
+
+        <a href="blog/how-real-time-adaptation-works-without-cameras.html" class="article-card" data-animate="card">
+            <div class="article-category cat-technology">TECHNOLOGY</div>
+            <h3 class="article-title">How Real-Time Adaptation Works (Without Cameras)</h3>
+            <p class="article-excerpt">Our RTAE engine tracks 14 engagement signals every second — without surveillance. Here's how we built privacy-first adaptive technology.</p>
+            <div class="article-meta">
+                <span>March 5, 2026</span>
+                <span>7 min read</span>
+            </div>
+        </a>
+
+        <a href="blog/project-gyansetu-bridging-education.html" class="article-card" data-animate="card">
+            <div class="article-category cat-impact">SOCIAL IMPACT</div>
+            <h3 class="article-title">Project Gyansetu: Bridging Education to Rural India</h3>
+            <p class="article-excerpt">Technology means nothing if it only serves those who already have access. How into3 is working to bring adaptive learning to girls in rural UP.</p>
+            <div class="article-meta">
+                <span>February 28, 2026</span>
+                <span>5 min read</span>
+            </div>
+        </a>
+
+        <a href="blog/private-tutor-vs-ai-tutor.html" class="article-card" data-animate="card">
+            <div class="article-category cat-education">EDUCATION</div>
+            <h3 class="article-title">Private Tutor vs AI Tutor: An Honest Comparison</h3>
+            <p class="article-excerpt">Private tutoring costs ₹9,000–16,500/month. AI adaptive learning costs ₹1,499. Here's the full cost, quality, and availability breakdown.</p>
+            <div class="article-meta">
+                <span>February 25, 2026</span>
+                <span>5 min read</span>
+            </div>
+        </a>
+
+        <a href="blog/why-your-child-forgets-after-studying.html" class="article-card" data-animate="card">
+            <div class="article-category cat-neuroscience">NEUROSCIENCE</div>
+            <h3 class="article-title">Why Your Child Forgets What They Studied</h3>
+            <p class="article-excerpt">The Ebbinghaus forgetting curve says we lose 70% within 24 hours. Spaced repetition and the testing effect can fix this — here's the science.</p>
+            <div class="article-meta">
+                <span>February 20, 2026</span>
+                <span>5 min read</span>
+            </div>
+        </a>
+
+        <a href="blog/screen-time-vs-learning-time.html" class="article-card" data-animate="card">
+            <div class="article-category cat-education">PARENTING</div>
+            <h3 class="article-title">Screen Time vs Learning Time: The Difference</h3>
+            <p class="article-excerpt">Not all screen time is equal. AAP research shows active, interactive screen time builds knowledge — while passive consumption drains it.</p>
+            <div class="article-meta">
+                <span>February 15, 2026</span>
+                <span>4 min read</span>
+            </div>
+        </a>
+
+        <a href="blog/what-to-do-when-child-hates-studying.html" class="article-card" data-animate="card">
+            <div class="article-category cat-education">PARENTING</div>
+            <h3 class="article-title">When Your Child Says "I Hate Studying"</h3>
+            <p class="article-excerpt">It's not laziness. Learned helplessness, autonomy loss, and fixed mindset create resistance. Here's what research says actually works.</p>
+            <div class="article-meta">
+                <span>February 10, 2026</span>
+                <span>5 min read</span>
+            </div>
+        </a>
+
+        <a href="blog/exam-anxiety-in-children.html" class="article-card" data-animate="card">
+            <div class="article-category cat-impact">MENTAL HEALTH</div>
+            <h3 class="article-title">Exam Anxiety in Children: What Actually Helps</h3>
+            <p class="article-excerpt">81.6% of Indian students report exam anxiety (NIMHANS). Cortisol impairs working memory. Here's the science of what works — and what doesn't.</p>
+            <div class="article-meta">
+                <span>February 5, 2026</span>
+                <span>6 min read</span>
+            </div>
+        </a>
+
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-section">
+        <h2 class="newsletter-title">Stay in the loop</h2>
+        <p class="newsletter-sub">Get notified when we publish new articles and insights.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address" required>
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+        <p class="coming-soon-note">More articles coming soon. Subscribe to get notified.</p>
+    </section>
+
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer class="blog-footer">
+    <div class="footer-inner">
+        <div class="footer-logo-text">int<span class="logo-3">o3</span><span class="logo-dot">.ai</span></div>
+        <div class="footer-links">
+            <a href="privacy.html" class="footer-link">Privacy</a>
+            <a href="terms.html" class="footer-link">Terms</a>
+        </div>
+        <div class="footer-copy">&copy; 2025 into3.ai. All rights reserved.</div>
+    </div>
+</footer>
+
+<!-- ====== SCRIPTS ====== -->
+<script>
+// Hamburger toggle
+const hamburger = document.getElementById('nav-hamburger');
+const navMenu = document.getElementById('nav-menu');
+hamburger.addEventListener('click', () => {
+    const open = navMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+});
+
+// Particle canvas
+(function() {
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+    const PARTICLE_COUNT = 60;
+
+    function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * w;
+            this.y = Math.random() * h;
+            this.vx = (Math.random() - 0.5) * 0.3;
+            this.vy = (Math.random() - 0.5) * 0.3;
+            this.r = Math.random() * 1.5 + 0.5;
+            this.alpha = Math.random() * 0.4 + 0.1;
+            this.color = Math.random() > 0.7 ? '#8a2be2' : (Math.random() > 0.5 ? '#c084fc' : '#00ff9d');
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > w) this.vx *= -1;
+            if (this.y < 0 || this.y > h) this.vy *= -1;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = this.alpha;
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+    function animate() {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of particles) { p.update(); p.draw(); }
+        // draw faint lines between close particles
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 150) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = 'rgba(138, 43, 226, ' + (0.06 * (1 - dist / 150)) + ')';
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+})();
+
+// GSAP scroll animations
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero entrance
+    gsap.from('.blog-hero-tag', { opacity: 0, y: 20, duration: 0.6, delay: 0.2 });
+    gsap.from('.blog-hero-headline', { opacity: 0, y: 30, duration: 0.7, delay: 0.35 });
+    gsap.from('.blog-hero-sub', { opacity: 0, y: 20, duration: 0.6, delay: 0.5 });
+
+    // Featured card
+    gsap.from('.featured-card', {
+        scrollTrigger: { trigger: '.featured-article', start: 'top 85%' },
+        opacity: 0, y: 40, duration: 0.8
+    });
+
+    // Article cards staggered
+    gsap.from('.article-card', {
+        scrollTrigger: { trigger: '.articles-grid', start: 'top 85%' },
+        opacity: 0, y: 40, duration: 0.6,
+        stagger: 0.15
+    });
+
+    // Newsletter section
+    gsap.from('.newsletter-section', {
+        scrollTrigger: { trigger: '.newsletter-section', start: 'top 85%' },
+        opacity: 0, y: 30, duration: 0.7
+    });
+});
+</script>
+
+</body>
+</html>

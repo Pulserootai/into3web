@@ -1,0 +1,13 @@
+# into3.ai robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://into3.ai/sitemap.xml
+
+# Crawl-delay (be gentle)
+Crawl-delay: 1
+
+# Block admin/internal paths (future)
+Disallow: /api/
+Disallow: /_internal/

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1S0R5L8N3Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1S0R5L8N3Y');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Our Mission — into3.ai | Rewiring Education Through AI</title>
+    <meta name="description" content="into3.ai exists to close the gap between how children learn and how they're taught. Our mission, vision, and values.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://into3.ai/mission.html">
+    <meta name="theme-color" content="#050508">
+    <meta name="color-scheme" content="dark">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dbbwqu5qi/image/upload/v1770751935/White_Logo_vmwb0d.svg">
+    <link rel="apple-touch-icon" href="https://res.cloudinary.com/dbbwqu5qi/image/upload/v1770751935/White_Logo_vmwb0d.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="into3.ai">
+    <meta property="og:title" content="Our Mission — into3.ai | Rewiring Education Through AI">
+    <meta property="og:description" content="Building the world's most intelligent, empathetic learning system. Every child deserves to be understood — not just taught.">
+    <meta property="og:url" content="https://into3.ai/mission.html">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:image" content="https://into3.ai/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@into3ai">
+    <meta name="twitter:title" content="Our Mission — into3.ai">
+    <meta name="twitter:description" content="Rewiring education through AI. Every child deserves to be understood.">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
+
+    <style>
+        /* ═══ RESET & VARIABLES ═══ */
+        *{margin:0;padding:0;box-sizing:border-box;}
+        :root{
+            --bg:#050508;
+            --text:#f0f0f5;
+            --text-dim:#8a8a9a;
+            --violet:#8a2be2;
+            --violet-light:#c084fc;
+            --green:#00ff9d;
+            --mono:'IBM Plex Mono',monospace;
+            --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+            --max:1100px;
+        }
+        html{scroll-behavior:smooth;}
+        body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6;}
+        ::selection{background:var(--violet);color:#fff;}
+        a{color:inherit;text-decoration:none;}
+        img{max-width:100%;display:block;}
+
+        /* ═══ PARTICLE CANVAS ═══ */
+        #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+        /* ═══ NAV ═══ */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,8,0.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(138,43,226,0.08);}
+        .nav-logo img{height:26px;width:auto;display:block;}
+        .nav-links{display:flex;gap:32px;align-items:center;}
+        .nav-link{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);transition:color 0.3s;}
+        .nav-link:hover{color:var(--violet-light);}
+
+        /* ═══ MAIN CONTENT ═══ */
+        .content{position:relative;z-index:1;}
+
+        /* ═══ SECTION: HERO ═══ */
+        .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;}
+        .hero-tag{font-family:var(--mono);font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--violet-light);margin-bottom:32px;opacity:0;}
+        .hero-headline{font-size:clamp(2rem,5vw,3.6rem);font-weight:700;line-height:1.15;letter-spacing:-1.5px;max-width:860px;opacity:0;}
+        .hero-headline em{font-style:normal;color:var(--violet-light);}
+        .hero-line{width:48px;height:1px;background:var(--violet);margin:40px auto 0;opacity:0;}
+
+        /* ═══ SECTION: MISSION ═══ */
+        .mission{padding:120px 24px;position:relative;}
+        .mission-inner{max-width:var(--max);margin:0 auto;}
+        .section-label{font-family:var(--mono);font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--violet-light);margin-bottom:40px;display:flex;align-items:center;gap:12px;}
+        .section-label::before{content:'';width:24px;height:1px;background:var(--violet);}
+        .mission-text{font-size:clamp(1.15rem,2.2vw,1.45rem);line-height:1.85;color:var(--text-dim);max-width:900px;}
+        .mission-text p{margin-bottom:32px;}
+        .mission-text strong{color:var(--text);font-weight:500;}
+
+        /* ═══ SECTION: VISION ═══ */
+        .vision{padding:120px 24px;position:relative;border-top:1px solid rgba(138,43,226,0.1);}
+        .vision-inner{max-width:var(--max);margin:0 auto;}
+        .vision-quote{font-size:clamp(1.6rem,3.2vw,2.6rem);font-weight:600;line-height:1.35;letter-spacing:-0.5px;max-width:900px;margin-bottom:48px;color:var(--text);}
+        .vision-quote .highlight{color:var(--violet-light);}
+        .vision-body{font-size:clamp(1.05rem,1.8vw,1.25rem);line-height:1.85;color:var(--text-dim);max-width:800px;}
+        .vision-body p{margin-bottom:28px;}
+
+        /* ═══ SECTION: VALUES ═══ */
+        .values{padding:120px 24px;position:relative;border-top:1px solid rgba(138,43,226,0.1);}
+        .values-inner{max-width:var(--max);margin:0 auto;}
+        .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:56px;}
+        .value-card{background:rgba(138,43,226,0.04);border:1px solid rgba(138,43,226,0.1);border-radius:12px;padding:36px 32px;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);}
+        .value-card:hover{background:rgba(138,43,226,0.08);border-color:rgba(138,43,226,0.25);transform:translateY(-4px);}
+        .value-icon{width:44px;height:44px;border-radius:10px;background:rgba(138,43,226,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:20px;}
+        .value-title{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:0.5px;margin-bottom:12px;color:var(--text);}
+        .value-desc{font-size:15px;line-height:1.7;color:var(--text-dim);}
+
+        /* ═══ SECTION: GYANSETU ═══ */
+        .gyansetu{padding:120px 24px;position:relative;overflow:hidden;}
+        .gyansetu::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet),var(--green),var(--violet),transparent);}
+        .gyansetu-inner{max-width:var(--max);margin:0 auto;position:relative;}
+        .gyansetu-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(0,255,157,0.06);border:1px solid rgba(0,255,157,0.15);border-radius:100px;font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:40px;}
+        .gyansetu-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-dot 2s ease-in-out infinite;}
+        @keyframes pulse-dot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+        .gyansetu-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-1px;line-height:1.2;margin-bottom:16px;}
+        .gyansetu-title .bridge{color:var(--green);}
+        .gyansetu-subtitle{font-family:var(--mono);font-size:13px;color:var(--text-dim);letter-spacing:1px;margin-bottom:48px;}
+        .gyansetu-body{font-size:clamp(1.05rem,1.8vw,1.25rem);line-height:1.85;color:var(--text-dim);max-width:800px;}
+        .gyansetu-body p{margin-bottom:28px;}
+        .gyansetu-body strong{color:var(--text);font-weight:500;}
+        .gyansetu-pullquote{font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:600;line-height:1.45;color:var(--text);border-left:3px solid var(--green);padding-left:28px;margin:48px 0;max-width:750px;}
+        .gyansetu-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:transparent;border:1px solid var(--green);border-radius:6px;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-top:16px;transition:all 0.3s;}
+        .gyansetu-cta:hover{background:rgba(0,255,157,0.08);transform:translateX(4px);}
+        .gyansetu-cta svg{width:14px;height:14px;transition:transform 0.3s;}
+        .gyansetu-cta:hover svg{transform:translateX(3px);}
+        .gyansetu-glow{position:absolute;top:50%;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,157,0.04) 0%,transparent 70%);pointer-events:none;}
+
+        /* ═══ SECTION: IMPACT ═══ */
+        .impact{padding:120px 24px;position:relative;border-top:1px solid rgba(138,43,226,0.1);}
+        .impact-inner{max-width:var(--max);margin:0 auto;}
+        .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-top:56px;}
+        .impact-stat{text-align:center;padding:40px 20px;}
+        .impact-number{font-family:var(--mono);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:700;color:var(--green);margin-bottom:12px;letter-spacing:-1px;}
+        .impact-label{font-size:14px;color:var(--text-dim);line-height:1.6;max-width:200px;margin:0 auto;}
+        .impact-note{font-family:var(--mono);font-size:12px;color:var(--text-dim);text-align:center;margin-top:48px;opacity:0.6;}
+
+        /* ═══ SECTION: CTA ═══ */
+        .cta{padding:120px 24px 140px;text-align:center;position:relative;}
+        .cta-inner{max-width:var(--max);margin:0 auto;}
+        .cta-headline{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;letter-spacing:-0.5px;line-height:1.3;margin-bottom:48px;max-width:650px;margin-left:auto;margin-right:auto;}
+        .cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+        .btn-primary{padding:16px 36px;background:var(--violet);color:#fff;border-radius:6px;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s;border:1px solid var(--violet);}
+        .btn-primary:hover{background:#9d4edd;border-color:#9d4edd;transform:translateY(-2px);box-shadow:0 8px 30px rgba(138,43,226,0.3);}
+        .btn-secondary{padding:16px 36px;background:transparent;color:var(--text);border-radius:6px;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s;border:1px solid rgba(255,255,255,0.15);}
+        .btn-secondary:hover{border-color:var(--violet-light);color:var(--violet-light);transform:translateY(-2px);}
+
+        /* ═══ FOOTER ═══ */
+        .footer{border-top:1px solid rgba(138,43,226,0.08);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+        .footer-logo img{height:22px;width:auto;display:block;opacity:0.5;}
+        .footer-copy{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:0.5px;}
+
+        /* ═══ RESPONSIVE ═══ */
+        @media(max-width:768px){
+            .nav{padding:14px 20px;}
+            .nav-links{gap:20px;}
+            .nav-link{font-size:9px;letter-spacing:2px;}
+            .hero{padding:100px 20px 60px;min-height:90vh;}
+            .mission,.vision,.values,.gyansetu,.impact,.cta{padding:80px 20px;}
+            .values-grid{grid-template-columns:1fr;gap:16px;}
+            .value-card{padding:28px 24px;}
+            .impact-grid{grid-template-columns:repeat(2,1fr);gap:20px;}
+            .impact-stat{padding:28px 12px;}
+            .cta-buttons{flex-direction:column;align-items:center;}
+            .btn-primary,.btn-secondary{width:100%;max-width:300px;text-align:center;}
+            .footer{flex-direction:column;gap:16px;text-align:center;padding:32px 20px;}
+            .gyansetu-pullquote{padding-left:20px;margin:36px 0;}
+        }
+        @media(max-width:480px){
+            .impact-grid{grid-template-columns:1fr 1fr;}
+            .nav-link:nth-child(3){display:none;}
+        }
+
+        /* ═══ SCROLL REVEAL BASE ═══ */
+        .reveal{opacity:0;transform:translateY(40px);}
+    </style>
+</head>
+<body>
+
+<!-- PARTICLES -->
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav class="nav">
+    <a href="index.html" class="nav-logo"><img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai logo" style="height:26px;width:auto;display:block;"></a>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="price-page.html" class="nav-link">Pricing</a>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<main class="content">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+        <div class="hero-tag" id="hero-tag">WHY WE EXIST</div>
+        <h1 class="hero-headline" id="hero-headline">Because every child deserves to be <em>understood</em> — not just taught.</h1>
+        <div class="hero-line" id="hero-line"></div>
+    </section>
+
+    <!-- ═══ MISSION ═══ -->
+    <section class="mission">
+        <div class="mission-inner">
+            <div class="section-label reveal">Our Mission</div>
+            <div class="mission-text">
+                <p class="reveal"><strong>Our mission is to build the world's most intelligent, empathetic learning system</strong> — one that doesn't just deliver content, but truly understands how each child thinks, struggles, and grows.</p>
+                <p class="reveal">We believe education should adapt to the learner, not the other way around. Every child's brain is different. Their education should be too. The current system was built for scale, not for individuals. We're here to change that — carefully, responsibly, and with the child always at the center.</p>
+                <p class="reveal"><strong>into3.ai exists to close the gap</strong> between how children actually learn and how they're currently taught — using AI that listens, adapts, and responds in real time. Not to replace human connection, but to make sure no child ever has to struggle in silence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ VISION ═══ -->
+    <section class="vision">
+        <div class="vision-inner">
+            <div class="section-label reveal">Our Vision</div>
+            <div class="vision-quote reveal">A world where <span class="highlight">no child falls behind</span> because the system couldn't keep up with them.</div>
+            <div class="vision-body">
+                <p class="reveal">We envision a future where every student — regardless of location, income, or learning style — has access to education that's built for their mind. Where a child in a small town receives the same depth of understanding and support as one in any metropolitan classroom.</p>
+                <p class="reveal">Where technology doesn't replace teachers, but gives every child the equivalent of having the world's most attentive, adaptive tutor sitting beside them — one that notices when they're confused before they even raise their hand, one that knows when to push and when to pause.</p>
+                <p class="reveal">This isn't about making education faster. It's about making it <strong>kinder</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ VALUES ═══ -->
+    <section class="values">
+        <div class="values-inner">
+            <div class="section-label reveal">What We Stand For</div>
+            <div class="values-grid">
+                <div class="value-card reveal">
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <div class="value-title">Learner First</div>
+                    <div class="value-desc">Every decision starts with one question: does this serve the child? If it doesn't, we don't build it. No exceptions.</div>
+                </div>
+                <div class="value-card reveal">
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div class="value-title">Privacy as Foundation</div>
+                    <div class="value-desc">We build trust by protecting what matters most — children's data and dignity. Privacy isn't a feature. It's the foundation everything else is built on.</div>
+                </div>
+                <div class="value-card reveal">
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div class="value-title">Science Over Hype</div>
+                    <div class="value-desc">Our AI is grounded in cognitive science, not marketing claims. We'd rather be right than impressive. Every claim we make, we can back up.</div>
+                </div>
+                <div class="value-card reveal">
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <div class="value-title">Access Over Exclusivity</div>
+                    <div class="value-desc">Great education shouldn't be a privilege. We're working to make it universal — because a child's potential should never be limited by their postcode.</div>
+                </div>
+                <div class="value-card reveal">
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <div class="value-title">Transparency Always</div>
+                    <div class="value-desc">Parents deserve to know exactly what happens when their child uses our platform. No hidden data collection. No opaque algorithms. Just honesty.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ GYANSETU ═══ -->
+    <section class="gyansetu">
+        <div class="gyansetu-glow"></div>
+        <div class="gyansetu-inner">
+            <div class="gyansetu-badge reveal">Social Initiative</div>
+            <h2 class="gyansetu-title reveal">Project <span class="bridge">Gyansetu</span></h2>
+            <div class="gyansetu-subtitle reveal">"Gyansetu" — Bridge of Knowledge (Hindi/Sanskrit)</div>
+            <div class="gyansetu-body">
+                <p class="reveal">There are millions of girls across rural India who have the curiosity, the intelligence, and the will to learn — but not the access. Schools are underfunded. Teachers are stretched thin. And the gap between what these children deserve and what they receive grows wider every year.</p>
+                <p class="reveal"><strong>Project Gyansetu is our commitment to change that.</strong> It is into3's social initiative to bring the same adaptive, AI-powered learning that we build for our platform to the communities that need it most — starting with girls in rural India who have been systematically denied quality education.</p>
+                <p class="reveal">We're not building a separate, lesser product for underserved communities. We're taking the same intelligence, the same care, the same technology — and making it available where it can do the most good. Because the infrastructure we build should serve everyone, not just those who can afford it.</p>
+            </div>
+            <blockquote class="gyansetu-pullquote reveal">Because the child in a village in UP deserves the same quality of learning as the child in South Delhi. Technology means nothing if it only serves those who already have access.</blockquote>
+            <a href="gyansetu/index.html" class="gyansetu-cta reveal">
+                Learn More About Gyansetu
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══ IMPACT ═══ -->
+    <section class="impact">
+        <div class="impact-inner">
+            <div class="section-label reveal">The Numbers Behind It</div>
+            <div class="impact-grid">
+                <div class="impact-stat reveal">
+                    <div class="impact-number" data-target="14" data-suffix=" signals">0</div>
+                    <div class="impact-label">tracked every second per learner</div>
+                </div>
+                <div class="impact-stat reveal">
+                    <div class="impact-number" data-target="27" data-suffix=" markers">0</div>
+                    <div class="impact-label">cognitive markers mapped per student</div>
+                </div>
+                <div class="impact-stat reveal">
+                    <div class="impact-number" data-target="12" data-suffix="ms">0</div>
+                    <div class="impact-label">content adaptation speed</div>
+                </div>
+                <div class="impact-stat reveal">
+                    <div class="impact-number" data-target="0" data-suffix=" children" data-is-zero="true">0</div>
+                    <div class="impact-label">left behind — that's the goal</div>
+                </div>
+            </div>
+            <div class="impact-note reveal">Real metrics. Real accountability. No vanity numbers.</div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="cta">
+        <div class="cta-inner">
+            <div class="section-label reveal" style="justify-content:center;">Take the Next Step</div>
+            <h2 class="cta-headline reveal">Ready to experience what education should feel like?</h2>
+            <div class="cta-buttons reveal">
+                <a href="trial.html" class="btn-primary">Start Free Trial</a>
+                <a href="demo.html" class="btn-secondary">Book a Demo</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <a href="index.html" class="footer-logo"><img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai logo" style="height:22px;width:auto;display:block;"></a>
+    <div class="footer-copy">&copy; 2026 into3.ai. All rights reserved.</div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+(function(){
+
+    /* ── Particle Canvas ── */
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+    const PARTICLE_COUNT = 60;
+
+    function resize(){
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function createParticle(){
+        return {
+            x: Math.random() * w,
+            y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            r: Math.random() * 1.5 + 0.5,
+            alpha: Math.random() * 0.3 + 0.05,
+            color: Math.random() > 0.7 ? '138,43,226' : '192,132,252'
+        };
+    }
+
+    for(let i = 0; i < PARTICLE_COUNT; i++) particles.push(createParticle());
+
+    function drawParticles(){
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if(p.x < 0) p.x = w;
+            if(p.x > w) p.x = 0;
+            if(p.y < 0) p.y = h;
+            if(p.y > h) p.y = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${p.color},${p.alpha})`;
+            ctx.fill();
+        });
+
+        // Draw subtle connections
+        for(let i = 0; i < particles.length; i++){
+            for(let j = i + 1; j < particles.length; j++){
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if(dist < 150){
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(138,43,226,${0.03 * (1 - dist / 150)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    /* ── GSAP Animations ── */
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero sequence
+    const heroTl = gsap.timeline({delay: 0.3});
+    heroTl.to('#hero-tag', {opacity: 1, duration: 0.8, ease: 'power2.out'})
+          .to('#hero-headline', {opacity: 1, duration: 1, ease: 'power2.out'}, '-=0.3')
+          .to('#hero-line', {opacity: 1, width: 48, duration: 0.6, ease: 'power2.out'}, '-=0.4');
+
+    // Typing effect for hero tag
+    const tagEl = document.getElementById('hero-tag');
+    const tagText = tagEl.textContent;
+    tagEl.textContent = '';
+    heroTl.add(function(){
+        let i = 0;
+        const interval = setInterval(function(){
+            tagEl.textContent = tagText.slice(0, i + 1);
+            i++;
+            if(i >= tagText.length) clearInterval(interval);
+        }, 60);
+    }, 0);
+
+    // Scroll reveals
+    document.querySelectorAll('.reveal').forEach(el => {
+        gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                once: true
+            }
+        });
+    });
+
+    // Animated counters
+    document.querySelectorAll('.impact-number').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const isZero = el.dataset.isZero === 'true';
+
+        ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%',
+            once: true,
+            onEnter: function(){
+                if(isZero){
+                    gsap.to(el, {
+                        duration: 0.6,
+                        ease: 'power2.out',
+                        onComplete: function(){
+                            el.textContent = '0' + suffix;
+                        }
+                    });
+                    return;
+                }
+                let obj = {val: 0};
+                gsap.to(obj, {
+                    val: target,
+                    duration: 1.8,
+                    ease: 'power2.out',
+                    onUpdate: function(){
+                        el.textContent = Math.round(obj.val) + suffix;
+                    }
+                });
+            }
+        });
+    });
+
+})();
+</script>
+
+</body>
+</html>

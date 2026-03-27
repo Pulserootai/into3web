@@ -1,0 +1,17 @@
+{
+  "name": "into3-website",
+  "version": "1.0.0",
+  "description": "into3.ai — AI-Powered Adaptive Learning Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "compression": "^1.7.4",
+    "helmet": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
