@@ -3678,6 +3678,14 @@
         setTimeout(function() {
             animateScan(0, 'down', null);
         }, 800);
+
+        // Safety: auto-unlock scroll after animations complete (18s)
+        // so user is never permanently stuck
+        setTimeout(function() {
+            if (document.body.style.overflow === 'hidden') {
+                document.body.style.overflow = '';
+            }
+        }, 18000);
     }
 
     const observer = new IntersectionObserver(function(entries) {
@@ -3987,6 +3995,14 @@
       flickerRAF = requestAnimationFrame(flickerLoop);
       runTimeline();
     }, 1000);
+
+    // Safety: auto-unlock scroll after experiment max duration (35s)
+    // so user is never permanently stuck
+    setTimeout(function() {
+      if (document.body.style.overflow === 'hidden') {
+        document.body.style.overflow = '';
+      }
+    }, 35000);
   });
 
   ssBtn.addEventListener('click', takeScreenshot);
@@ -4757,62 +4773,13 @@ function setupClose() {
 })();
 
 /* ==============================================================
-   NAV: stuck on hero, hides after, hover to reveal
+   NAV: always visible, stays fixed at top
    ============================================================== */
 (function() {
     const nav = document.getElementById('main-nav');
-    const heroSection = document.getElementById('hero-section');
-    let pastHero = false;
-    let hideTimer = null;
-
-    // Track scroll position relative to hero
-    function checkScroll() {
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        const scrollY = window.scrollY || window.pageYOffset;
-
-        if (scrollY > heroBottom - 100) {
-            if (!pastHero) {
-                pastHero = true;
-                nav.classList.add('hidden');
-                nav.classList.remove('peek');
-            }
-        } else {
-            if (pastHero) {
-                pastHero = false;
-                nav.classList.remove('hidden');
-                nav.classList.remove('peek');
-            }
-        }
-    }
-
-    window.addEventListener('scroll', checkScroll, { passive: true });
-    checkScroll();
-
-    // Hover to reveal when past hero
-    document.addEventListener('mousemove', function(e) {
-        if (!pastHero) return;
-        if (e.clientY < 80) {
-            clearTimeout(hideTimer);
-            nav.classList.add('peek');
-        } else if (!nav.matches(':hover')) {
-            hideTimer = setTimeout(function() {
-                nav.classList.remove('peek');
-            }, 600);
-        }
-    });
-
-    nav.addEventListener('mouseenter', function() {
-        if (!pastHero) return;
-        clearTimeout(hideTimer);
-        nav.classList.add('peek');
-    });
-
-    nav.addEventListener('mouseleave', function() {
-        if (!pastHero) return;
-        hideTimer = setTimeout(function() {
-            nav.classList.remove('peek');
-        }, 400);
-    });
+    // Ensure nav is never hidden
+    nav.classList.remove('hidden');
+    nav.classList.remove('peek');
 })();
 
 /* ==============================================================
@@ -4880,6 +4847,27 @@ function setupClose() {
     document.querySelectorAll('.footer-copy').forEach(function(el) {
         el.innerHTML = el.innerHTML.replace(/2025/, year);
     });
+})();
+
+/* ==============================================================
+   GLOBAL SAFETY: unlock scroll if user attempts to scroll while locked
+   ============================================================== */
+(function() {
+    var scrollAttempts = 0;
+    function onUserScroll() {
+        if (document.body.style.overflow === 'hidden') {
+            scrollAttempts++;
+            // Unlock after 3 consecutive scroll attempts
+            if (scrollAttempts >= 3) {
+                document.body.style.overflow = '';
+                scrollAttempts = 0;
+            }
+        } else {
+            scrollAttempts = 0;
+        }
+    }
+    window.addEventListener('wheel', onUserScroll, { passive: true });
+    window.addEventListener('touchmove', onUserScroll, { passive: true });
 })();
 </script>
 </body>
