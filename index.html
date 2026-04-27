@@ -4568,27 +4568,98 @@ function setupPostExperiment() {
 document.addEventListener('DOMContentLoaded', function() {
     const gatedIds = ['post-experiment', 'product-reveal', 'outcomes-zone', 'journey-zone', 'trust-zone', 'close-zone', 'site-footer'];
 
+    function fastForward(targetId, opts) {
+        const target = document.getElementById(targetId);
+        if (!target) return false;
+        const wasHidden = getComputedStyle(target).display === 'none';
+
+        // Reveal every gated section.
+        gatedIds.forEach(function(id) {
+            const sec = document.getElementById(id);
+            if (sec) sec.classList.add('active');
+        });
+        document.body.style.overflow = '';
+
+        // Run every section's setup synchronously. Otherwise setupJourney
+        // (chained behind setupProductReveal's setTimeout) would only fire
+        // ~3s later, AFTER we've already scrolled — and its GSAP pin adds
+        // an 8-viewport spacer that shifts layout out from under the user.
+        if (typeof setupPostExperiment === 'function') setupPostExperiment();
+        if (targetId !== 'post-experiment') {
+            if (typeof setupProductReveal === 'function') setupProductReveal();
+            if (typeof setupOutcomes === 'function') setupOutcomes();
+            if (typeof setupJourney === 'function') setupJourney();
+            if (typeof setupTrust === 'function') setupTrust();
+            if (typeof setupClose === 'function') setupClose();
+        }
+
+        // Force-reveal everything normally gated on scroll/IntersectionObserver/GSAP-scrub.
+        ['pr-header', 'pr-img-wrap', 'pr-content', 'pr-scroll'].forEach(function(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('visible');
+        });
+        const firstPri = document.getElementById('pri-1');
+        if (firstPri && !document.querySelector('.pr-img-container img.active')) firstPri.classList.add('active');
+        ['oc-subline', 'oc-powerline', 'oc-scroll-cta'].forEach(function(id) {
+            const el = document.getElementById(id);
+            if (el) el.style.opacity = '1';
+        });
+        document.querySelectorAll('.trust-block').forEach(function(b) {
+            b.classList.add('visible');
+        });
+        ['close-img', 'ci-tl', 'ci-br', 'close-content'].forEach(function(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('revealed');
+        });
+
+        history.replaceState(null, '', '#' + targetId);
+
+        // Pin spacers shift layout substantially. Two rAFs + a brief timeout
+        // give it time to settle, then we use scrollTo with a freshly
+        // computed offset for a deterministic landing. Default to instant
+        // ("auto") because smooth scrolling across multiple GSAP-pinned
+        // sections is racy — the browser's target keeps shifting as pin
+        // spacers re-layout mid-scroll, leaving the user on the wrong row.
+        const behavior = (opts && opts.behavior) || 'auto';
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+                if (window.ScrollTrigger && typeof ScrollTrigger.refresh === 'function') {
+                    ScrollTrigger.refresh();
+                }
+                setTimeout(function() {
+                    const top = target.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({ top: top, behavior: behavior });
+                }, 80);
+            });
+        });
+        return wasHidden;
+    }
+
+    // Click handler on skip-next links. Only intercept if target is hidden;
+    // otherwise let default anchor behavior run.
     document.querySelectorAll('a.skip-next[href^="#"]').forEach(function(link) {
         link.addEventListener('click', function(e) {
             const targetId = link.getAttribute('href').slice(1);
             const target = document.getElementById(targetId);
             if (!target) return;
-            if (getComputedStyle(target).display !== 'none') return; // already visible — let default behavior run
-
+            if (getComputedStyle(target).display !== 'none') return;
             e.preventDefault();
-            gatedIds.forEach(function(id) {
-                const sec = document.getElementById(id);
-                if (sec) sec.classList.add('active');
-            });
-            document.body.style.overflow = '';
-
-            if (typeof setupPostExperiment === 'function') setupPostExperiment();
-            if (targetId !== 'post-experiment' && typeof setupProductReveal === 'function') setupProductReveal();
-
-            history.replaceState(null, '', '#' + targetId);
-            target.scrollIntoView({ behavior: 'smooth' });
+            fastForward(targetId);
         });
     });
+
+    // Direct URL navigation: page load with #target, browser back/forward to
+    // a gated hash, etc. — same fast-forward, no smooth scroll on first paint.
+    function handleHash(behavior) {
+        const hash = window.location.hash.slice(1);
+        if (!hash || gatedIds.indexOf(hash) === -1) return;
+        const target = document.getElementById(hash);
+        if (!target) return;
+        if (getComputedStyle(target).display !== 'none') return;
+        fastForward(hash, { behavior: behavior });
+    }
+    window.addEventListener('hashchange', function() { handleHash('smooth'); });
+    handleHash('auto');
 });
 
 
