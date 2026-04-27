@@ -206,6 +206,12 @@
             text-decoration: none;
             transition: color 0.3s;
         }
+        button.nav-link {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
         .nav-link:hover { color: #fff; }
         .nav-buy {
             color: var(--violet);
@@ -213,7 +219,184 @@
             border: 1px solid rgba(138,43,226,0.4);
             border-radius: 2px;
         }
+        button.nav-buy { padding: 8px 20px; border: 1px solid rgba(138,43,226,0.4); }
         .nav-buy:hover { background: rgba(138,43,226,0.1); color: #fff; }
+        .nav-disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+            user-select: none;
+        }
+        .nav-disabled.nav-buy { border-color: rgba(138,43,226,0.2); }
+
+        /* ============================================================
+           DEMO REQUEST MODAL
+           ============================================================ */
+        .demo-modal[hidden] { display: none; }
+        .demo-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .demo-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            animation: demoFade 0.25s ease-out;
+        }
+        .demo-modal-card {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            max-height: calc(100vh - 48px);
+            overflow-y: auto;
+            background: linear-gradient(180deg, rgba(14,10,22,0.98), rgba(8,8,14,0.98));
+            border: 1px solid rgba(138,43,226,0.35);
+            border-radius: 6px;
+            padding: 36px 32px 28px;
+            color: #e8e8ee;
+            box-shadow: 0 30px 80px rgba(138,43,226,0.25), 0 0 0 1px rgba(138,43,226,0.05) inset;
+            animation: demoSlide 0.3s ease-out;
+        }
+        .demo-modal-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(138,43,226,0.7), transparent);
+        }
+        .demo-modal-x {
+            position: absolute;
+            top: 10px; right: 14px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 24px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: color 0.2s;
+        }
+        .demo-modal-x:hover { color: #fff; }
+        .demo-modal-proto {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--violet);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .demo-modal-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 6px;
+            color: #fff;
+        }
+        .demo-modal-sub {
+            font-size: 13px;
+            color: #888;
+            margin: 0 0 22px;
+        }
+        .demo-form { display: flex; flex-direction: column; gap: 14px; }
+        .demo-field { display: flex; flex-direction: column; gap: 6px; }
+        .demo-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+        }
+        .demo-form input,
+        .demo-form select {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(138,43,226,0.25);
+            border-radius: 3px;
+            color: #fff;
+            font: inherit;
+            font-size: 14px;
+            padding: 10px 12px;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .demo-form input:focus,
+        .demo-form select:focus {
+            border-color: rgba(138,43,226,0.7);
+            background: rgba(138,43,226,0.06);
+        }
+        .demo-form select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, #888 50%), linear-gradient(135deg, #888 50%, transparent 50%);
+            background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+            background-size: 5px 5px;
+            background-repeat: no-repeat;
+            padding-right: 32px;
+        }
+        .demo-form select option { background: #0c0a14; color: #fff; }
+        .demo-consent {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 12px;
+            color: #aaa;
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+        .demo-consent input[type="checkbox"] {
+            margin-top: 2px;
+            accent-color: #8a2be2;
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+        .demo-status {
+            font-family: var(--mono);
+            font-size: 11px;
+            min-height: 16px;
+            color: #888;
+        }
+        .demo-status.error { color: #ff5577; }
+        .demo-status.success { color: #59e0a3; }
+        .demo-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 18px;
+            background: linear-gradient(135deg, #6a1b9a, #8a2be2);
+            border: none;
+            color: #fff;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(138,43,226,0.35);
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+            margin-top: 4px;
+        }
+        .demo-submit:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 26px rgba(138,43,226,0.55);
+        }
+        .demo-submit:disabled { opacity: 0.55; cursor: wait; }
+        .demo-submit-arrow { font-size: 14px; transform: translateY(-1px); }
+        @keyframes demoFade { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes demoSlide {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 480px) {
+            .demo-modal-card { padding: 28px 20px 22px; }
+            .demo-modal-title { font-size: 20px; }
+        }
 
         /* GLOBAL RUSH BUTTON + MENU */
         .rush-wrap {
@@ -2051,6 +2234,10 @@
             border-color:rgba(138,43,226,0.4);
             color:var(--violet); background:rgba(138,43,226,0.06);
         }
+        .footer-social-icon svg {
+            width:16px; height:16px; fill:currentColor;
+            transition:fill 0.3s;
+        }
 
         /* Bottom bar */
         .footer-bottom {
@@ -2665,13 +2852,74 @@
         <div class="nav-menu" id="nav-menu" role="menubar">
             <a href="features.html" class="nav-link" role="menuitem">Features</a>
             <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
-            <a href="trial.html" class="nav-link" role="menuitem">30 Day Trial</a>
-            <a href="price-page.html" class="nav-link nav-buy" role="menuitem">Buy Now</a>
+            <span class="nav-link nav-disabled" role="menuitem" aria-disabled="true" title="Coming soon">30 Day Trial</span>
+            <button type="button" class="nav-link nav-buy" role="menuitem" id="open-demo-modal">Request Demo</button>
+            <span class="nav-link nav-buy nav-disabled" role="menuitem" aria-disabled="true" title="Coming soon">Buy Now</span>
         </div>
     </nav>
 
     <!-- RUSH MENU OVERLAY -->
     <div class="rush-overlay" id="rush-overlay"></div>
+
+    <!-- DEMO REQUEST MODAL -->
+    <div class="demo-modal" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" hidden>
+        <div class="demo-modal-backdrop" data-demo-close></div>
+        <div class="demo-modal-card" role="document">
+            <button type="button" class="demo-modal-x" aria-label="Close" data-demo-close>&times;</button>
+            <div class="demo-modal-proto">DEMO_REGISTRATION_v01</div>
+            <h2 class="demo-modal-title" id="demo-modal-title">Request a Demo</h2>
+            <p class="demo-modal-sub">A 1:1 walkthrough of into3.ai — usually takes 20 minutes.</p>
+
+            <form id="demo-form" class="demo-form" novalidate>
+                <label class="demo-field">
+                    <span class="demo-label">Full Name</span>
+                    <input type="text" name="fullName" required autocomplete="name" maxlength="120">
+                </label>
+
+                <label class="demo-field">
+                    <span class="demo-label">Mobile Number</span>
+                    <input type="tel" name="mobile" required autocomplete="tel" pattern="[0-9+\-\s()]{7,20}" maxlength="20">
+                </label>
+
+                <label class="demo-field">
+                    <span class="demo-label">Email</span>
+                    <input type="email" name="email" required autocomplete="email" maxlength="160">
+                </label>
+
+                <label class="demo-field">
+                    <span class="demo-label">I am a</span>
+                    <select name="role" required>
+                        <option value="" disabled selected hidden>Select one</option>
+                        <option value="Student">Student</option>
+                        <option value="Professional">Professional</option>
+                        <option value="Business Owner">Business Owner</option>
+                    </select>
+                </label>
+
+                <label class="demo-field">
+                    <span class="demo-label">Interested In</span>
+                    <input type="text" name="interest" required maxlength="200" placeholder="e.g. JEE prep, NEET, focus tools…">
+                </label>
+
+                <label class="demo-field">
+                    <span class="demo-label">Preferred Time</span>
+                    <input type="text" name="preferredTime" required maxlength="120" placeholder="e.g. Mon 5–7 PM IST">
+                </label>
+
+                <label class="demo-consent">
+                    <input type="checkbox" name="consent" required>
+                    <span>I agree to be contacted regarding demo and updates.</span>
+                </label>
+
+                <div class="demo-status" id="demo-status" role="status" aria-live="polite"></div>
+
+                <button type="submit" class="demo-submit" id="demo-submit">
+                    <span class="demo-submit-text">Submit Request</span>
+                    <span class="demo-submit-arrow">&rsaquo;</span>
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- GLOBAL "I AM IN RUSH" + PANEL MENU -->
     <div class="rush-wrap" id="rush-wrap">
@@ -3422,10 +3670,24 @@
                         <span>A-116, Urbtech Trade Centre, Sec-132, Gautam Buddha Nagar-201304, UP</span>
                     </div>
                     <div class="footer-socials">
-                        <a href="#" class="footer-social-icon" aria-label="X/Twitter"><lord-icon src="https://cdn.lordicon.com/jvucoldz.json" trigger="hover" colors="primary:#c084fc" style="width:20px;height:20px"></lord-icon></a>
-                        <a href="#" class="footer-social-icon" aria-label="LinkedIn"><lord-icon src="https://cdn.lordicon.com/qgebwute.json" trigger="hover" colors="primary:#6495ed" style="width:20px;height:20px"></lord-icon></a>
-                        <a href="#" class="footer-social-icon" aria-label="Instagram"><lord-icon src="https://cdn.lordicon.com/lplfeaur.json" trigger="hover" colors="primary:#e879f9" style="width:20px;height:20px"></lord-icon></a>
-                        <a href="#" class="footer-social-icon" aria-label="YouTube"><lord-icon src="https://cdn.lordicon.com/becebamh.json" trigger="hover" colors="primary:#ff5f57" style="width:20px;height:20px"></lord-icon></a>
+                        <a href="https://www.facebook.com/into3ai" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/into3.ai/" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                        </a>
+                        <a href="https://x.com/Into3ai" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="X">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/company/into3-ai/" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://in.pinterest.com/into3ai/" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Pinterest">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@Into3ai" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
                     </div>
                 </div>
 
@@ -4015,6 +4277,8 @@
    POST-EXPERIMENT: sequential replace + particles + teacher cycle
    ============================================================== */
 function setupPostExperiment() {
+    if (setupPostExperiment._done) return;
+    setupPostExperiment._done = true;
 
     // ---- TYPING HEADING ----
     (function() {
@@ -4222,11 +4486,118 @@ function setupPostExperiment() {
     setTimeout(function() { showStep(0); }, 600);
 }
 
+// Demo request modal: open from nav + rush panel, close on backdrop / X / Esc,
+// submit POSTs JSON to /api/demo-request which fans out via Resend.
+(function() {
+    const modal = document.getElementById('demo-modal');
+    if (!modal) return;
+    const openBtn = document.getElementById('open-demo-modal');
+    const form = document.getElementById('demo-form');
+    const status = document.getElementById('demo-status');
+    const submit = document.getElementById('demo-submit');
+    const submitText = submit ? submit.querySelector('.demo-submit-text') : null;
+    let lastFocus = null;
+
+    function open() {
+        lastFocus = document.activeElement;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        const firstInput = form.querySelector('input, select');
+        if (firstInput) setTimeout(function() { firstInput.focus(); }, 50);
+    }
+    function close() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    if (openBtn) openBtn.addEventListener('click', open);
+    modal.querySelectorAll('[data-demo-close]').forEach(function(el) {
+        el.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !modal.hidden) close();
+    });
+
+    function setStatus(msg, kind) {
+        status.textContent = msg || '';
+        status.classList.remove('error', 'success');
+        if (kind) status.classList.add(kind);
+    }
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        const data = Object.fromEntries(new FormData(form).entries());
+        data.consent = form.querySelector('input[name="consent"]').checked;
+
+        submit.disabled = true;
+        if (submitText) submitText.textContent = 'Submitting…';
+        setStatus('Sending…');
+
+        try {
+            const res = await fetch('/api/demo-request', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const body = await res.json().catch(function() { return {}; });
+            if (!res.ok) throw new Error(body.error || 'Submission failed. Please try again.');
+            setStatus('Thanks — we will reach out shortly.', 'success');
+            form.reset();
+            setTimeout(close, 1800);
+        } catch (err) {
+            setStatus(err.message || 'Something went wrong.', 'error');
+        } finally {
+            submit.disabled = false;
+            if (submitText) submitText.textContent = 'Submit Request';
+        }
+    });
+})();
+
+// Skip-link fast-forward.
+// Sections #post-experiment, #product-reveal, #outcomes-zone, #journey-zone,
+// #trust-zone, #close-zone, and #site-footer all start `display:none` and are
+// only revealed when the preceding section's timeline finishes. A plain
+// <a href="#..."> can't scroll to a hidden target, so any skip-next click whose
+// target is currently hidden needs to: reveal all gated sections, kick the
+// setup chain, update the hash, and scroll.
+document.addEventListener('DOMContentLoaded', function() {
+    const gatedIds = ['post-experiment', 'product-reveal', 'outcomes-zone', 'journey-zone', 'trust-zone', 'close-zone', 'site-footer'];
+
+    document.querySelectorAll('a.skip-next[href^="#"]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            const targetId = link.getAttribute('href').slice(1);
+            const target = document.getElementById(targetId);
+            if (!target) return;
+            if (getComputedStyle(target).display !== 'none') return; // already visible — let default behavior run
+
+            e.preventDefault();
+            gatedIds.forEach(function(id) {
+                const sec = document.getElementById(id);
+                if (sec) sec.classList.add('active');
+            });
+            document.body.style.overflow = '';
+
+            if (typeof setupPostExperiment === 'function') setupPostExperiment();
+            if (targetId !== 'post-experiment' && typeof setupProductReveal === 'function') setupProductReveal();
+
+            history.replaceState(null, '', '#' + targetId);
+            target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+});
+
 
 /* ==============================================================
    PRODUCT REVEAL SECTION
    ============================================================== */
 function setupProductReveal() {
+    if (setupProductReveal._done) return;
+    setupProductReveal._done = true;
 
     // Particles
     (function() {
@@ -4367,6 +4738,8 @@ function setupProductReveal() {
    OUTCOMES SECTION — CARD FAN + HOVER + CLICK DETAIL
    ============================================================== */
 function setupOutcomes() {
+    if (setupOutcomes._done) return;
+    setupOutcomes._done = true;
 
     const ocDetailData = {
         1: {
@@ -4539,6 +4912,8 @@ function setupOutcomes() {
    JOURNEY SECTION — HORIZONTAL SCROLL WITH PRODUCT MOCKUPS
    ============================================================== */
 function setupJourney() {
+    if (setupJourney._done) return;
+    setupJourney._done = true;
     gsap.registerPlugin(ScrollTrigger);
 
     const jDescs = {
@@ -4662,6 +5037,8 @@ function setupJourney() {
    TRUST / SAFETY / CONTROL SECTION
    ============================================================== */
 function setupTrust() {
+    if (setupTrust._done) return;
+    setupTrust._done = true;
     // Stagger blocks in
     const blocks = document.querySelectorAll('.trust-block');
     const observer = new IntersectionObserver(function(entries) {
@@ -4705,6 +5082,8 @@ function setupTrust() {
    FINAL CLOSE / CTA SECTION
    ============================================================== */
 function setupClose() {
+    if (setupClose._done) return;
+    setupClose._done = true;
     const section = document.getElementById('close-zone');
     const observer = new IntersectionObserver(function(entries) {
         if (entries[0].isIntersecting) {
