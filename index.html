@@ -2853,7 +2853,7 @@
             <a href="features.html" class="nav-link" role="menuitem">Features</a>
             <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
             <span class="nav-link nav-disabled" role="menuitem" aria-disabled="true" title="Coming soon">30 Day Trial</span>
-            <button type="button" class="nav-link nav-buy" role="menuitem" id="open-demo-modal">Request Demo</button>
+            <button type="button" class="nav-link nav-buy" role="menuitem" id="open-demo-modal">Join the Waitlist</button>
             <span class="nav-link nav-buy nav-disabled" role="menuitem" aria-disabled="true" title="Coming soon">Buy Now</span>
         </div>
     </nav>
@@ -2866,55 +2866,59 @@
         <div class="demo-modal-backdrop" data-demo-close></div>
         <div class="demo-modal-card" role="document">
             <button type="button" class="demo-modal-x" aria-label="Close" data-demo-close>&times;</button>
-            <div class="demo-modal-proto">DEMO_REGISTRATION_v01</div>
-            <h2 class="demo-modal-title" id="demo-modal-title">Request a Demo</h2>
-            <p class="demo-modal-sub">A 1:1 walkthrough of into3.ai — usually takes 20 minutes.</p>
+            <div class="demo-modal-proto">WAITLIST_REGISTRATION_v01</div>
+            <h2 class="demo-modal-title" id="demo-modal-title">Join the Waitlist</h2>
+            <p class="demo-modal-sub">Be first in line when into3.ai opens. We'll email a confirmation right after you join.</p>
 
             <form id="demo-form" class="demo-form" novalidate>
                 <label class="demo-field">
-                    <span class="demo-label">Full Name</span>
-                    <input type="text" name="fullName" required autocomplete="name" maxlength="120">
+                    <span class="demo-label">Student Name</span>
+                    <input type="text" name="studentName" required autocomplete="name" maxlength="120">
                 </label>
 
                 <label class="demo-field">
-                    <span class="demo-label">Mobile Number</span>
-                    <input type="tel" name="mobile" required autocomplete="tel" pattern="[0-9+\-\s()]{7,20}" maxlength="20">
-                </label>
-
-                <label class="demo-field">
-                    <span class="demo-label">Email</span>
-                    <input type="email" name="email" required autocomplete="email" maxlength="160">
-                </label>
-
-                <label class="demo-field">
-                    <span class="demo-label">I am a</span>
-                    <select name="role" required>
-                        <option value="" disabled selected hidden>Select one</option>
-                        <option value="Student">Student</option>
-                        <option value="Professional">Professional</option>
-                        <option value="Business Owner">Business Owner</option>
+                    <span class="demo-label">Class</span>
+                    <select name="class" required>
+                        <option value="" disabled selected hidden>Select class</option>
+                        <option value="Class 6">Class 6</option>
+                        <option value="Class 7">Class 7</option>
+                        <option value="Class 8">Class 8</option>
+                        <option value="Class 9">Class 9</option>
+                        <option value="Class 10">Class 10</option>
+                        <option value="Class 11">Class 11</option>
+                        <option value="Class 12">Class 12</option>
                     </select>
                 </label>
 
                 <label class="demo-field">
-                    <span class="demo-label">Interested In</span>
-                    <input type="text" name="interest" required maxlength="200" placeholder="e.g. JEE prep, NEET, focus tools…">
+                    <span class="demo-label">Student Email</span>
+                    <input type="email" name="studentEmail" required maxlength="160" placeholder="We'll send a note from our founder">
                 </label>
 
                 <label class="demo-field">
-                    <span class="demo-label">Preferred Time</span>
-                    <input type="text" name="preferredTime" required maxlength="120" placeholder="e.g. Mon 5–7 PM IST">
+                    <span class="demo-label">Parent Name</span>
+                    <input type="text" name="parentName" required maxlength="120">
+                </label>
+
+                <label class="demo-field">
+                    <span class="demo-label">Parent Email</span>
+                    <input type="email" name="parentEmail" required autocomplete="email" maxlength="160">
+                </label>
+
+                <label class="demo-field">
+                    <span class="demo-label">Parent Mobile Number</span>
+                    <input type="tel" name="parentMobile" required autocomplete="tel" pattern="[0-9+\-\s()]{7,20}" maxlength="20">
                 </label>
 
                 <label class="demo-consent">
                     <input type="checkbox" name="consent" required>
-                    <span>I agree to be contacted regarding demo and updates.</span>
+                    <span>I agree to be contacted regarding the waitlist and product updates.</span>
                 </label>
 
                 <div class="demo-status" id="demo-status" role="status" aria-live="polite"></div>
 
                 <button type="submit" class="demo-submit" id="demo-submit">
-                    <span class="demo-submit-text">Submit Request</span>
+                    <span class="demo-submit-text">Join the Waitlist</span>
                     <span class="demo-submit-arrow">&rsaquo;</span>
                 </button>
             </form>
@@ -4486,8 +4490,8 @@ function setupPostExperiment() {
     setTimeout(function() { showStep(0); }, 600);
 }
 
-// Demo request modal: open from nav + rush panel, close on backdrop / X / Esc,
-// submit POSTs JSON to /api/demo-request which fans out via Resend.
+// Waitlist modal: open from nav, close on backdrop / X / Esc, submit POSTs
+// JSON to /api/waitlist — server emails the team and the registrant via Resend.
 (function() {
     const modal = document.getElementById('demo-modal');
     if (!modal) return;
@@ -4539,21 +4543,21 @@ function setupPostExperiment() {
         setStatus('Sending…');
 
         try {
-            const res = await fetch('/api/demo-request', {
+            const res = await fetch('/api/waitlist', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
             const body = await res.json().catch(function() { return {}; });
             if (!res.ok) throw new Error(body.error || 'Submission failed. Please try again.');
-            setStatus('Thanks — we will reach out shortly.', 'success');
+            setStatus("You're on the waitlist — check your email for confirmation.", 'success');
             form.reset();
-            setTimeout(close, 1800);
+            setTimeout(close, 2200);
         } catch (err) {
             setStatus(err.message || 'Something went wrong.', 'error');
         } finally {
             submit.disabled = false;
-            if (submitText) submitText.textContent = 'Submit Request';
+            if (submitText) submitText.textContent = 'Join the Waitlist';
         }
     });
 })();
