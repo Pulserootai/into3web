@@ -63,7 +63,7 @@
         "@type": "Organization",
         "name": "into3.ai",
         "url": "https://into3.ai",
-        "logo": "https://res.cloudinary.com/dbbwqu5qi/image/upload/v1770751935/White_Logo_vmwb0d.svg",
+        "logo": "https://into3.ai/assets/logo.png",
         "description": "AI-powered adaptive learning platform that personalizes education for every child using real-time neural adaptation.",
         "address": {
             "@type": "PostalAddress",
@@ -2139,137 +2139,12 @@
 
         /* ============================================================
            FOOTER
+           Shared styling lives in assets/site-footer.css.
+           Only the homepage's scroll-gated reveal is page-local.
            ============================================================ */
-        #site-footer {
-            display:none;
-            background:#080810;
-            position:relative; z-index:5;
-            border-top:1px solid #151520;
-        }
+        #site-footer { display:none; }
         #site-footer.active { display:block; }
 
-        .footer-inner { max-width:1200px; margin:0 auto; padding:0 50px; }
-
-        /* Newsletter bar */
-        .footer-newsletter {
-            padding:50px 0 40px;
-            text-align:center;
-            border-bottom:1px solid rgba(255,255,255,0.06);
-        }
-        .footer-nl-title {
-            font-size:1.4rem; font-weight:700; color:#fff;
-            margin-bottom:8px;
-        }
-        .footer-nl-sub {
-            font-family:var(--mono); font-size:11px;
-            color:#555; margin-bottom:24px;
-        }
-        .footer-nl-form {
-            display:flex; justify-content:center;
-            gap:0; max-width:480px; margin:0 auto;
-        }
-        .footer-nl-input {
-            flex:1; padding:14px 20px;
-            background:rgba(255,255,255,0.04);
-            border:1px solid rgba(255,255,255,0.08);
-            border-right:none;
-            border-radius:8px 0 0 8px;
-            color:#ccc; font-family:var(--mono); font-size:12px;
-            outline:none; transition:border-color 0.3s;
-        }
-        .footer-nl-input::placeholder { color:#444; }
-        .footer-nl-input:focus { border-color:rgba(138,43,226,0.4); }
-        .footer-nl-btn {
-            padding:14px 28px;
-            background:linear-gradient(135deg,#6a1b9a,#8a2be2);
-            border:none; border-radius:0 8px 8px 0;
-            color:#fff; font-family:var(--mono); font-size:11px;
-            letter-spacing:2px; text-transform:uppercase;
-            cursor:pointer; transition:all 0.3s;
-            white-space:nowrap;
-        }
-        .footer-nl-btn:hover { background:linear-gradient(135deg,#7b1fa2,#9c27b0); }
-
-        /* Link columns */
-        .footer-columns {
-            display:grid;
-            grid-template-columns:1fr 1fr 1fr 1.2fr;
-            gap:40px;
-            padding:50px 0 40px;
-        }
-        .footer-col-title {
-            font-size:12px; font-weight:800;
-            letter-spacing:3px; text-transform:uppercase;
-            color:#fff; margin-bottom:18px;
-        }
-        .footer-col a {
-            display:block; font-family:var(--mono); font-size:12px;
-            color:#555; text-decoration:none;
-            padding:5px 0; transition:color 0.3s;
-        }
-        .footer-col a:hover { color:var(--violet); }
-
-        /* Connect column */
-        .footer-contact-line {
-            display:flex; align-items:center; gap:8px;
-            font-family:var(--mono); font-size:12px;
-            color:#555; margin-bottom:8px;
-        }
-        .footer-contact-icon { font-size:14px; }
-        .footer-contact-line a { display:inline; padding:0; }
-
-        .footer-socials {
-            display:flex; gap:10px; margin-top:16px;
-        }
-        .footer-social-icon {
-            width:36px; height:36px; border-radius:50%;
-            border:1px solid rgba(255,255,255,0.08);
-            background:rgba(255,255,255,0.02);
-            display:flex; align-items:center; justify-content:center;
-            font-family:var(--mono); font-size:13px; font-weight:600;
-            color:#555; text-decoration:none;
-            transition:all 0.3s;
-        }
-        .footer-social-icon:hover {
-            border-color:rgba(138,43,226,0.4);
-            color:var(--violet); background:rgba(138,43,226,0.06);
-        }
-        .footer-social-icon svg {
-            width:16px; height:16px; fill:currentColor;
-            transition:fill 0.3s;
-        }
-
-        /* Bottom bar */
-        .footer-bottom {
-            padding:30px 0;
-            border-top:1px solid rgba(255,255,255,0.04);
-            display:flex; justify-content:space-between;
-            align-items:center;
-        }
-        .footer-logo-area { display:flex; flex-direction:column; gap:4px; }
-        .footer-logo-text {
-            font-size:1.6rem; font-weight:800; color:#fff;
-            letter-spacing:-1px;
-        }
-        .footer-logo-text .logo-3 { color:var(--violet); }
-        .footer-logo-text .logo-dot { color:var(--violet); font-size:0.9em; }
-        .footer-tagline {
-            font-family:var(--mono); font-size:9px;
-            color:#333; letter-spacing:2px;
-        }
-        .footer-copy {
-            font-family:var(--mono); font-size:10px;
-            color:#333; letter-spacing:1px;
-        }
-
-        @media(max-width:900px) {
-            .footer-columns { grid-template-columns:1fr 1fr; gap:30px; }
-            .footer-bottom { flex-direction:column; gap:16px; text-align:center; }
-            .footer-inner { padding:0 28px; }
-        }
-        @media(max-width:500px) {
-            .footer-columns { grid-template-columns:1fr; }
-        }
 
         /* ============================================================
            TROXLER STYLES (EXACT FROM troxler.html)
@@ -2732,14 +2607,6 @@
             .close-subline { font-size: 0.95rem; }
             .cta-primary { padding: 14px 28px; font-size: 11px; letter-spacing: 2px; }
 
-            /* FOOTER */
-            .footer-inner { padding: 0 20px; }
-            .footer-columns { grid-template-columns: 1fr 1fr; gap: 24px; }
-            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-            .footer-nl-form { flex-direction: column; }
-            .footer-nl-input { border-right: 1px solid rgba(255,255,255,0.08); border-radius: 8px; }
-            .footer-nl-btn { border-radius: 8px; }
-
             /* RUSH BUTTON */
             .rush-wrap { bottom: 20px; right: 20px; }
             .rush-btn { padding: 10px 20px; font-size: 10px; }
@@ -2749,7 +2616,6 @@
         @media (max-width: 480px) {
             .hero { padding: 70px 16px 24px; }
             #hero-section h1 { font-size: clamp(1.8rem, 8vw, 3rem); letter-spacing: -1px; }
-            .footer-columns { grid-template-columns: 1fr; }
             .oc-card-deck { width: 260px; height: 380px; }
             .oc-card { width: 220px; height: 320px; padding: 20px 16px; }
             .oc-heading { font-size: 1.6rem; }
@@ -2833,6 +2699,7 @@
             .skip-next { padding: 8px 14px; font-size: 8px; bottom: 14px; letter-spacing: 1px; }
         }
     </style>
+    <link rel="stylesheet" href="assets/site-footer.css">
 </head>
 <body>
 
@@ -2843,7 +2710,7 @@
     <nav id="main-nav" aria-label="Main navigation">
         <div class="nav-left">
             <a href="/" class="nav-logo-wrap" aria-label="into3.ai — Go to homepage">
-                <img src="https://i.ibb.co/xKZsc4dB/White-Logo-1.png" alt="into3.ai logo" class="nav-logo-img" width="112" height="28">
+                <img src="assets/logo.svg" alt="into3.ai logo" class="nav-logo-img" width="112" height="28">
             </a>
         </div>
         <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
@@ -3623,91 +3490,96 @@
     <!-- ============================================================
          FOOTER
          ============================================================ -->
-    <footer id="site-footer">
-        <div class="footer-inner">
+    <!-- ============================================================
+     STANDARD SITE FOOTER  (shared markup — assets/site-footer.css)
+     ============================================================ -->
+<footer class="sf" id="site-footer">
+    <div class="sf-inner">
 
-            <!-- NEWSLETTER -->
-            <div class="footer-newsletter">
-                <div class="footer-nl-title">Stay Connected</div>
-                <div class="footer-nl-sub">Get the latest updates on AI-powered education and exclusive insights</div>
-                <div class="footer-nl-form">
-                    <input type="email" class="footer-nl-input" placeholder="Enter your email"/>
-                    <button class="footer-nl-btn">Subscribe</button>
-                </div>
+        <!-- NEWSLETTER -->
+        <div class="sf-newsletter">
+            <div class="sf-nl-title">Stay Connected</div>
+            <div class="sf-nl-sub">Get the latest updates on AI-powered education and exclusive insights</div>
+            <form class="sf-nl-form" novalidate>
+                <input type="email" class="sf-nl-input" placeholder="Enter your email" aria-label="Email address" autocomplete="email">
+                <button type="submit" class="sf-nl-btn">Subscribe</button>
+            </form>
+        </div>
+
+        <!-- LINK COLUMNS -->
+        <div class="sf-columns">
+
+            <div class="sf-col">
+                <div class="sf-col-title">Product</div>
+                <a href="features.html">Features</a>
+                <a href="price-page.html">Pricing</a>
+                <a href="how-it-works.html">How It Works</a>
+                <a href="demo.html">Book a Demo</a>
             </div>
 
-            <!-- LINK COLUMNS -->
-            <div class="footer-columns">
-
-                <div class="footer-col">
-                    <div class="footer-col-title">Product</div>
-                    <a href="features.html">Features</a>
-                    <a href="price-page.html">Pricing</a>
-                    <a href="how-it-works.html">How It Works</a>
-                    <a href="demo.html">Book a Demo</a>
-                </div>
-
-                <div class="footer-col">
-                    <div class="footer-col-title">Company</div>
-                    <a href="about.html">About Us</a>
-                    <a href="mission.html">Our Mission</a>
-                    <a href="careers.html">Careers</a>
-                    <a href="contact.html">Contact Us</a>
-                </div>
-
-                <div class="footer-col">
-                    <div class="footer-col-title">Legal</div>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms &amp; Conditions</a>
-                    <a href="refund.html">Refund Policy</a>
-                    <a href="accessibility.html">Accessibility</a>
-                </div>
-
-                <div class="footer-col">
-                    <div class="footer-col-title">Connect</div>
-                    <div class="footer-contact-line">
-                        <span class="footer-contact-icon">&#x2709;</span>
-                        <a href="mailto:info@into3.ai">info@into3.ai</a>
-                    </div>
-                    <div class="footer-contact-line">
-                        <span class="footer-contact-icon">&#x1F4CD;</span>
-                        <span>A-116, Urbtech Trade Centre, Sec-132, Gautam Buddha Nagar-201304, UP</span>
-                    </div>
-                    <div class="footer-socials">
-                        <a href="https://www.facebook.com/into3ai" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Facebook">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
-                        </a>
-                        <a href="https://www.instagram.com/into3.ai/" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-                        </a>
-                        <a href="https://x.com/Into3ai" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="X">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
-                        <a href="https://www.linkedin.com/company/into3-ai/" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        </a>
-                        <a href="https://in.pinterest.com/into3ai/" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Pinterest">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-                        </a>
-                        <a href="https://www.youtube.com/@Into3ai" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        </a>
-                    </div>
-                </div>
-
+            <div class="sf-col">
+                <div class="sf-col-title">Company</div>
+                <a href="about.html">About Us</a>
+                <a href="mission.html">Our Mission</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact Us</a>
             </div>
 
-            <!-- BOTTOM BAR -->
-            <div class="footer-bottom">
-                <div class="footer-logo-area">
-                    <div class="footer-logo-text">int<span class="logo-3">o3</span><span class="logo-dot">.ai</span></div>
-                    <div class="footer-tagline">Learn &#xD7; 3 &nbsp; Grow &#xD7; 3 &nbsp; Achieve &#xD7; 3</div>
+            <div class="sf-col">
+                <div class="sf-col-title">Legal</div>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms &amp; Conditions</a>
+                <a href="refund.html">Refund Policy</a>
+                <a href="accessibility.html">Accessibility</a>
+            </div>
+
+            <div class="sf-col">
+                <div class="sf-col-title">Connect</div>
+                <div class="sf-contact-line">
+                    <span class="sf-contact-icon" aria-hidden="true">&#x2709;</span>
+                    <a href="mailto:info@into3.ai">info@into3.ai</a>
                 </div>
-                <div class="footer-copy">&copy; 2025 into3.ai. All rights reserved.</div>
+                <div class="sf-contact-line">
+                    <span class="sf-contact-icon" aria-hidden="true">&#x1F4CD;</span>
+                    <span>A-116, Urbtech Trade Centre, Sec-132, Gautam Buddha Nagar-201304, UP</span>
+                </div>
+                <div class="sf-socials">
+                    <a href="https://www.facebook.com/into3ai" target="_blank" rel="noopener noreferrer" class="sf-social-icon" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/into3.ai/" target="_blank" rel="noopener noreferrer" class="sf-social-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                    </a>
+                    <a href="https://x.com/Into3ai" target="_blank" rel="noopener noreferrer" class="sf-social-icon" aria-label="X">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/into3-ai/" target="_blank" rel="noopener noreferrer" class="sf-social-icon" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://in.pinterest.com/into3ai/" target="_blank" rel="noopener noreferrer" class="sf-social-icon" aria-label="Pinterest">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@Into3ai" target="_blank" rel="noopener noreferrer" class="sf-social-icon" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                </div>
             </div>
 
         </div>
-    </footer>
+
+        <!-- BOTTOM BAR -->
+        <div class="sf-bottom">
+            <div class="sf-logo-area">
+                <a href="index.html" class="sf-logo" aria-label="into3.ai — Go to homepage">
+                    <img src="assets/logo.svg" alt="into3.ai" width="118" height="33">
+                </a>
+                <div class="sf-tagline">Learn &#xD7; 3 &nbsp; Grow &#xD7; 3 &nbsp; Achieve &#xD7; 3</div>
+            </div>
+            <div class="sf-copy">&copy; 2026 into3.ai. All rights reserved.</div>
+        </div>
+
+    </div>
+</footer>
 
     <!-- SCREENSHOT OVERLAY -->
     <div id="screenshot-result">
@@ -5265,51 +5137,6 @@ function setupClose() {
 })();
 
 /* ==============================================================
-   NEWSLETTER FORM — CLIENT-SIDE VALIDATION
-   ============================================================== */
-(function() {
-    const nlBtn = document.querySelector('.footer-nl-btn');
-    const nlInput = document.querySelector('.footer-nl-input');
-    if (!nlBtn || !nlInput) return;
-
-    nlBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const email = nlInput.value.trim();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            nlInput.style.borderColor = 'rgba(255,95,87,0.5)';
-            nlInput.setAttribute('aria-invalid', 'true');
-            setTimeout(function() {
-                nlInput.style.borderColor = '';
-                nlInput.removeAttribute('aria-invalid');
-            }, 2000);
-            return;
-        }
-        nlInput.style.borderColor = 'rgba(0,255,157,0.4)';
-        nlBtn.textContent = 'Subscribed!';
-        nlBtn.style.background = 'rgba(0,255,157,0.15)';
-        nlBtn.style.color = '#00ff9d';
-        nlInput.value = '';
-        setTimeout(function() {
-            nlBtn.textContent = 'Subscribe';
-            nlBtn.style.background = '';
-            nlBtn.style.color = '';
-            nlInput.style.borderColor = '';
-        }, 3000);
-    });
-})();
-
-/* ==============================================================
-   DYNAMIC COPYRIGHT YEAR
-   ============================================================== */
-(function() {
-    const year = new Date().getFullYear();
-    document.querySelectorAll('.footer-copy').forEach(function(el) {
-        el.innerHTML = el.innerHTML.replace(/2025/, year);
-    });
-})();
-
-/* ==============================================================
    GLOBAL SAFETY: unlock scroll if user attempts to scroll while locked
    ============================================================== */
 (function() {
@@ -5330,5 +5157,6 @@ function setupClose() {
     window.addEventListener('touchmove', onUserScroll, { passive: true });
 })();
 </script>
+<script src="assets/site-footer.js" defer></script>
 </body>
 </html>

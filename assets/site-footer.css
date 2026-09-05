@@ -1,0 +1,223 @@
+/* ============================================================
+   into3.ai — STANDARD SITE FOOTER
+   Shared by every page. All selectors are prefixed `sf-` so
+   they never collide with page-local `footer` / `.footer-*` CSS.
+   ============================================================ */
+
+footer.sf {
+    /* Hard reset: neutralise page-local bare `footer { ... }` rules */
+    display: block;
+    max-width: none;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+
+    background: #080810;
+    border-top: 1px solid #151520;
+    position: relative;
+    z-index: 5;
+    color: #fff;
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.sf .sf-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+/* ---------- Newsletter ---------- */
+.sf .sf-newsletter {
+    padding: 50px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.sf .sf-nl-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 8px;
+    letter-spacing: normal;
+}
+.sf .sf-nl-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #555;
+    margin: 0 0 24px;
+}
+.sf .sf-nl-form {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.sf .sf-nl-input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    color: #ccc;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+.sf .sf-nl-input::placeholder { color: #444; }
+.sf .sf-nl-input:focus { border-color: rgba(138,43,226,0.4); }
+.sf .sf-nl-btn {
+    padding: 14px 28px;
+    background: linear-gradient(135deg,#6a1b9a,#8a2be2);
+    border: none;
+    border-radius: 0 8px 8px 0;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+.sf .sf-nl-btn:hover { background: linear-gradient(135deg,#7b1fa2,#9c27b0); }
+
+/* ---------- Link columns ---------- */
+.sf .sf-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    padding: 50px 0 40px;
+}
+.sf .sf-col-title {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 18px;
+}
+.sf .sf-col a {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+.sf .sf-col a:hover,
+.sf .sf-col a:focus-visible { color: #8a2be2; }
+
+/* ---------- Connect column ---------- */
+.sf .sf-contact-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+.sf .sf-contact-icon { font-size: 14px; line-height: 1.4; }
+.sf .sf-contact-line a { display: inline; padding: 0; }
+
+.sf .sf-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+.sf .sf-social-icon {
+    width: 36px;
+    height: 36px;
+    flex: none;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.sf .sf-social-icon:hover,
+.sf .sf-social-icon:focus-visible {
+    border-color: rgba(138,43,226,0.4);
+    color: #8a2be2;
+    background: rgba(138,43,226,0.06);
+}
+.sf .sf-social-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    transition: fill 0.3s;
+}
+
+/* ---------- Bottom bar ---------- */
+.sf .sf-bottom {
+    padding: 30px 0;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.sf .sf-logo-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+.sf .sf-logo {
+    display: block;
+    line-height: 0;
+    text-decoration: none;
+}
+.sf .sf-logo img {
+    height: 26px;
+    width: auto;
+    display: block;
+    margin: 0;
+}
+.sf .sf-tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #333;
+    letter-spacing: 2px;
+}
+.sf .sf-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #333;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .sf .sf-columns { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .sf .sf-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .sf .sf-logo-area { align-items: center; }
+    .sf .sf-inner { padding: 0 28px; }
+}
+@media (max-width: 600px) {
+    .sf .sf-inner { padding: 0 20px; }
+    .sf .sf-nl-form { flex-direction: column; gap: 10px; }
+    .sf .sf-nl-input { border-right: 1px solid rgba(255,255,255,0.08); border-radius: 8px; }
+    .sf .sf-nl-btn { border-radius: 8px; }
+}
+@media (max-width: 500px) {
+    .sf .sf-columns { grid-template-columns: 1fr; }
+}
