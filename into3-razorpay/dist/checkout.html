@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+    <meta name="robots" content="noindex" />
+    <title>Reserve founding-family access | Into3</title>
+    <link rel="stylesheet" href="checkout.css" />
+    <script src="config.js?v=payments1" defer></script>
+    <script src="checkout.js?v=payments1" defer></script>
+  </head>
+  <body>
+    <header>
+      <a href="lp1"
+        ><img src="assets/logo.svg" alt="Into3" width="142" /></a
+      ><a href="learn-more.html">Explore Into3</a>
+    </header>
+    <main>
+      <div class="heading">
+        <p class="eyebrow">FOUNDING FAMILIES · PRE-LAUNCH</p>
+        <h1>A small reservation.<br />A whole new learning journey.</h1>
+        <p>
+          For CBSE Classes 6–12. Planned launch: December 2026–January 2027.
+          Access is not immediate.
+        </p>
+      </div>
+      <div class="grid">
+        <section class="card">
+          <h2>Your founding-family offer</h2>
+          <div class="price">₹100 <span>payable today</span></div>
+          <p>Inclusive of applicable tax. No additional checkout fee.</p>
+          <ul>
+            <li>One introductory month included when access begins.</li>
+            <li>₹1,399/month for the next six paid months.</li>
+            <li>Your ₹100 advance reduces the first paid bill to ₹1,299.</li>
+            <li>Planned price thereafter: ₹1,499/month.</li>
+            <li>No automatic subscription debit.</li>
+          </ul>
+          <h3>A refundable first step</h3>
+          <p>
+            Cancel before the launch deadline for a full ₹100 refund. Our team
+            initiates eligible refunds within 24 hours of receiving your
+            request. Your bank or payment provider may take additional time to
+            credit it.
+          </p>
+          <p>
+            If Into3 has not launched by 31 January 2027, your ₹100 is fully
+            refundable. Refunds are processed manually by our team.
+          </p>
+          <p>
+            Phase 1 capacity: 5,000 students. A reservation is confirmed only
+            after payment verification and availability checks. If the last
+            places fill while your payment is processing, your full payment is
+            eligible for refund.
+          </p>
+        </section>
+        <section class="card">
+          <h2 id="form-title">Parent / guardian details</h2>
+          <p id="availability" role="status">
+            Checking reservation availability…
+          </p>
+          <form id="checkout-form">
+            <label
+              >Your name<input
+                name="name"
+                autocomplete="name"
+                required
+                minlength="2"
+                maxlength="100"
+            /></label>
+            <label
+              >Email for confirmation<input
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                maxlength="254"
+            /></label>
+            <label
+              >Mobile number<input
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                required
+                placeholder="+91"
+                pattern="\+?[1-9][0-9\s()-]{9,18}"
+                maxlength="20"
+            /></label>
+            <label
+              >State / Union Territory<input
+                name="state"
+                autocomplete="address-level1"
+                required
+                minlength="2"
+                maxlength="60"
+            /></label>
+            <label
+              >Student’s class<select name="grade" required>
+                <option value="">Choose class</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select></label
+            >
+            <label class="check"
+              ><input name="isParent" type="checkbox" required />I am a parent
+              or guardian aged 18 or over.</label
+            >
+            <label class="check"
+              ><input name="acceptedTerms" type="checkbox" required /><span
+                >I accept the offer, cancellation and refund terms shown here
+                and the
+                <a
+                  href="https://into3.ai/privacy.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Privacy Policy</a
+                >. I understand access starts after launch.</span
+              ></label
+            >
+            <button id="pay" disabled>Reserve with ₹100</button>
+          </form>
+          <p id="message" role="status" aria-live="polite"></p>
+          <div id="manage" hidden>
+            <h3>Your reservation</h3>
+            <p id="order-status"></p>
+            <button id="refresh" class="secondary">Check payment status</button
+            ><button id="cancel" class="secondary">
+              Request full refund / cancel
+            </button>
+            <p>
+              Keep your confirmation email: it contains a private link to this
+              reservation.
+            </p>
+          </div>
+        </section>
+      </div>
+      <footer>
+        <strong>DEEPSCIENCE COGNITECH AI LABS PRIVATE LIMITED</strong>
+        <p>
+          GSTIN: 09AAMCD7848L1ZS<br />A-116, First Floor, Urbtech Trade Centre,
+          Sector 132, Noida, Uttar Pradesh 201304
+        </p>
+        <a href="mailto:orders@into3.ai">orders@into3.ai</a> ·
+        <a href="https://wa.me/918796989996">WhatsApp support</a>
+        <p>
+          Your details are used to process this reservation and send order
+          updates. This checkout page does not load advertising pixels. Razorpay
+          processes your payment details.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

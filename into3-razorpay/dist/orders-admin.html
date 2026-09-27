@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+    <meta name="robots" content="noindex" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Into3 order administration</title>
+    <link rel="stylesheet" href="checkout.css" />
+    <script src="config.js?v=payments1" defer></script>
+    <script src="orders-admin.js?v=payments1" defer></script>
+  </head>
+  <body>
+    <header>
+      <a href="lp1"
+        ><img src="assets/logo.svg" alt="Into3" width="142" /></a
+      ><button id="logout" class="secondary">Sign out</button>
+    </header>
+    <main>
+      <h1>Reservation desk</h1>
+      <p>
+        Restricted to authorised administrators. Process refunds in Razorpay,
+        then verify the refund reference here.
+      </p>
+      <button id="login">Sign in</button>
+      <div id="local" hidden>
+        <label
+          >Local admin token<input
+            id="local-token"
+            type="password"
+            autocomplete="off" /></label
+        ><button id="local-login">Unlock local admin</button>
+      </div>
+      <p id="status" role="status"></p>
+      <section id="desk" hidden>
+        <label>Search orders<input id="search" type="search" placeholder="Reference, parent name, email or payment ID"></label><button id="load">Refresh orders</button
+        ><button id="export" class="secondary">
+          Export loaded orders (CSV)</button
+        ><button id="missed" class="secondary">
+          Mark launch missed — queue full refunds
+        </button>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Reference / parent</th>
+                <th>Status</th>
+                <th>Payment</th>
+                <th>Refund</th>
+              </tr>
+            </thead>
+            <tbody id="orders"></tbody>
+          </table>
+        </div>
+        <button id="more" class="secondary" hidden>Load more</button>
+      </section>
+      <dialog id="refund-dialog">
+        <h2>Verify a manual refund</h2>
+        <p>
+          Initiate the full ₹100 refund in Razorpay first. This action only
+          checks and records its provider status.
+        </p>
+        <form id="refund-form">
+          <label
+            >Razorpay refund ID<input
+              id="refund-id"
+              required
+              pattern="rfnd_[a-zA-Z0-9]+" /></label
+          ><button>Verify refund</button
+          ><button type="button" id="close" class="secondary">Close</button>
+        </form>
+      </dialog>
+    </main>
+  </body>
+</html>

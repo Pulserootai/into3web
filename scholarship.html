@@ -808,42 +808,51 @@
         const referral = data.get('referral') || 'Not specified';
         const message = data.get('message') || 'None';
 
-        // Build mailto body
-        const body = [
-            'SCHOLARSHIP TEST REGISTRATION',
-            '================================',
-            '',
-            'Student Name: ' + studentName,
-            'Parent/Guardian: ' + parentName,
-            'Email: ' + email,
-            'Phone: ' + phone,
-            'Class/Grade: Class ' + grade,
-            'School: ' + school,
-            'City: ' + city,
-            'State: ' + state,
-            'Preferred Test Date: ' + testDate,
-            'Heard about us via: ' + referral,
-            'Message: ' + message
-        ].join('\n');
-
-        const subject = encodeURIComponent('Scholarship Test Registration: ' + studentName);
-        const mailtoBody = encodeURIComponent(body);
-        const mailtoLink = 'mailto:info@into3.ai?subject=' + subject + '&body=' + mailtoBody;
-
-        // Open mailto
-        window.location.href = mailtoLink;
-
-        // Try API POST (for future backend)
         const payload = { studentName, parentName, email, phone, grade, school, city, state, testDate, referral, message };
-        fetch('https://into3.ai/api/scholarship', {
+        const submitBtn = form.querySelector('.submit-btn');
+        const btnLabel = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting…';
+
+        // Fallback if the API is unreachable: open a prefilled email instead.
+        function openMailto() {
+            const body = [
+                'SCHOLARSHIP TEST REGISTRATION',
+                '================================',
+                '',
+                'Student Name: ' + studentName,
+                'Parent/Guardian: ' + parentName,
+                'Email: ' + email,
+                'Phone: ' + phone,
+                'Class/Grade: Class ' + grade,
+                'School: ' + school,
+                'City: ' + city,
+                'State: ' + state,
+                'Preferred Test Date: ' + testDate,
+                'Heard about us via: ' + referral,
+                'Message: ' + message
+            ].join('\n');
+            window.location.href = 'mailto:info@into3.ai?subject=' +
+                encodeURIComponent('Scholarship Test Registration: ' + studentName) +
+                '&body=' + encodeURIComponent(body);
+        }
+
+        fetch('/api/scholarship', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
-        }).catch(function() { /* silent — backend not yet available */ });
-
-        // Show success
-        form.style.display = 'none';
-        successState.classList.add('visible');
+        }).then(function(res) {
+            return res.json().catch(function() { return {}; }).then(function(data) {
+                if (!res.ok) throw new Error(data.error || 'Could not submit your registration.');
+                form.style.display = 'none';
+                successState.classList.add('visible');
+            });
+        }).catch(function(err) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = btnLabel;
+            if (err instanceof TypeError) { openMailto(); return; } // network failure
+            alert(err.message);
+        });
     });
 })();
 </script>

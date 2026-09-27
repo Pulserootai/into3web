@@ -1,0 +1,11 @@
+.sites-runtime/
+node_modules/
+.env*
+verification/
+
+.data/
+.aws-sam/
+build/
+build/
+
+.playwright-cli/

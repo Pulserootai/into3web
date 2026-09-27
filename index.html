@@ -4415,13 +4415,9 @@ function setupPostExperiment() {
         setStatus('Sending…');
 
         try {
-            // Local dev hits the Express server on localhost; production
-            // (into3.ai on GitHub Pages) hits the AWS Lambda via API Gateway.
-            const isLocal = ['localhost', '127.0.0.1'].indexOf(window.location.hostname) !== -1;
-            const apiUrl = isLocal
-                ? '/api/waitlist'
-                : 'https://wuezlcuvsf.execute-api.ap-south-1.amazonaws.com/api/waitlist';
-            const res = await fetch(apiUrl, {
+            // Same-origin everywhere: locally the Express server, in production
+            // CloudFront routes /api/waitlist to the AWS Lambda.
+            const res = await fetch('/api/waitlist', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)

@@ -1,0 +1,2 @@
+// Shared launch and contact settings. Payment remains disabled until final terms and gateway are configured.
+window.INTO3_CONFIG = Object.freeze({whatsappNumber: '+918796989996', checkoutUrl: '', apiBaseUrl: '', adminAuth: {domain: 'https://into3-prelaunch-admin-test.auth.ap-south-1.amazoncognito.com', clientId: 'q7opud4ldtc866tcta5onb5sc'}, accessWindow: 'Planned launch: December 2026 - January 2027; exact activation date to be confirmed', refundTerms: '', termsConfirmed: false});

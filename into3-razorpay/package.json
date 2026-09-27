@@ -1,0 +1,26 @@
+{
+  "name": "into3-landing",
+  "version": "1.0.0",
+  "description": "Into3 reservations API and static landing pages",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/local.js",
+    "test": "node --test backend/test/*.test.js",
+    "check": "node --check backend/service.js && node --check backend/api.js && node --check backend/lambda.js && node --check dist/checkout.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1141.0",
+    "@aws-sdk/client-secrets-manager": "^3.1141.0",
+    "@aws-sdk/client-sesv2": "^3.1141.0",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "razorpay": "^2.9.8"
+  },
+  "private": true,
+  "type": "module"
+}
