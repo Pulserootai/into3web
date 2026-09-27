@@ -1,0 +1,218 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Into3 reservations API, durable S3 ledger, SES email and Cognito administration
+Parameters:
+  SiteOrigin:
+    Type: String
+    Default: https://into3.ai
+    Description: Comma-separated browser origins allowed to call the API
+  SiteUrl:
+    Type: String
+    Default: https://into3.ai/landingpages/prelaunch
+    Description: Public base URL of the landing pages (used in customer email links)
+  AdminCallbackUrls:
+    Type: CommaDelimitedList
+    Default: https://into3.ai/landingpages/prelaunch/orders-admin.html
+    Description: Exact orders-admin.html URLs allowed as Cognito callback/logout
+  SecretArn:
+    Type: String
+    Description: Existing Secrets Manager JSON secret (Razorpay keys, webhook secret, token secret, PAYMENTS_ENABLED)
+  EmailMode:
+    Type: String
+    Default: resend
+    AllowedValues: [resend, ses, disabled]
+    Description: resend needs RESEND_API_KEY in the secret; ses needs SES production access
+  AdminDomainPrefix:
+    Type: String
+    Description: Unique Cognito domain prefix, e.g. into3-reservations-test-youraccount
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    CodeUri: ../build/payment-api/
+    Handler: backend/lambda.handler
+    MemorySize: 512
+    Timeout: 28
+    Environment:
+      Variables:
+        SECRET_ARN: !Ref SecretArn
+        LEDGER_BUCKET: !Ref Ledger
+        ALLOWED_ORIGIN: !Ref SiteOrigin
+        SITE_URL: !Ref SiteUrl
+        EMAIL_MODE: !Ref EmailMode
+        EMAIL_FROM: orders@into3.ai
+        EMAIL_TO: orders@into3.ai
+Resources:
+  Ledger:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      VersioningConfiguration: { Status: Enabled }
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault: { SSEAlgorithm: AES256 }
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+  LedgerPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref Ledger
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Deny
+            Principal: "*"
+            Action: s3:*
+            Resource: [!GetAtt Ledger.Arn, !Sub "${Ledger.Arn}/*"]
+            Condition: { Bool: { "aws:SecureTransport": false } }
+  AdminPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      AdminCreateUserConfig: { AllowAdminCreateUserOnly: true }
+      UsernameAttributes: [email]
+      AutoVerifiedAttributes: [email]
+      MfaConfiguration: "ON"
+      EnabledMfas: [SOFTWARE_TOKEN_MFA]
+      Policies:
+        PasswordPolicy:
+          {
+            MinimumLength: 14,
+            RequireLowercase: true,
+            RequireUppercase: true,
+            RequireNumbers: true,
+            RequireSymbols: true,
+          }
+  AdminClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId: !Ref AdminPool
+      GenerateSecret: false
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthFlows: [code]
+      AllowedOAuthScopes: [openid, email]
+      SupportedIdentityProviders: [COGNITO]
+      CallbackURLs: !Ref AdminCallbackUrls
+      LogoutURLs: !Ref AdminCallbackUrls
+      PreventUserExistenceErrors: ENABLED
+  AdminGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties: { UserPoolId: !Ref AdminPool, GroupName: admins }
+  AdminDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties: { UserPoolId: !Ref AdminPool, Domain: !Ref AdminDomainPrefix }
+  Api:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: "$default"
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 20
+        ThrottlingRateLimit: 10
+      Auth:
+        Authorizers:
+          AdminJwt:
+            IdentitySource: "$request.header.Authorization"
+            JwtConfiguration:
+              issuer: !Sub "https://cognito-idp.${AWS::Region}.amazonaws.com/${AdminPool}"
+              audience: [!Ref AdminClient]
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Policies:
+        - S3ReadPolicy: { BucketName: !Ref Ledger }
+        - S3WritePolicy: { BucketName: !Ref Ledger }
+        - AWSSecretsManagerGetSecretValuePolicy: { SecretArn: !Ref SecretArn }
+      Events:
+        Public:
+          Type: HttpApi
+          Properties: { ApiId: !Ref Api, Path: "/api/{proxy+}", Method: ANY }
+        AdminList:
+          Type: HttpApi
+          Properties:
+            {
+              ApiId: !Ref Api,
+              Path: /api/admin/orders,
+              Method: GET,
+              Auth: { Authorizer: AdminJwt },
+            }
+        AdminRefund:
+          Type: HttpApi
+          Properties:
+            {
+              ApiId: !Ref Api,
+              Path: /api/admin/refund,
+              Method: POST,
+              Auth: { Authorizer: AdminJwt },
+            }
+        AdminLaunch:
+          Type: HttpApi
+          Properties:
+            {
+              ApiId: !Ref Api,
+              Path: /api/admin/missed-launch,
+              Method: POST,
+              Auth: { Authorizer: AdminJwt },
+            }
+  Worker:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 240
+      Policies:
+        - S3ReadPolicy: { BucketName: !Ref Ledger }
+        - S3WritePolicy: { BucketName: !Ref Ledger }
+        - AWSSecretsManagerGetSecretValuePolicy: { SecretArn: !Ref SecretArn }
+        - Statement:
+            - Effect: Allow
+              Action: ses:SendEmail
+              Resource: "*"
+              Condition:
+                { StringEquals: { "ses:FromAddress": orders@into3.ai } }
+      Events:
+        Reconcile:
+          {
+            Type: Schedule,
+            Properties: { Schedule: "rate(1 minute)", Enabled: true },
+          }
+  ApiLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      { LogGroupName: !Sub "/aws/lambda/${ApiFunction}", RetentionInDays: 30 }
+  WorkerLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      { LogGroupName: !Sub "/aws/lambda/${Worker}", RetentionInDays: 30 }
+  OperationsTopic:
+    Type: AWS::SNS::Topic
+  OperationsSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      {
+        TopicArn: !Ref OperationsTopic,
+        Protocol: email,
+        Endpoint: orders@into3.ai,
+      }
+  WorkerAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions: [{ Name: FunctionName, Value: !Ref Worker }]
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmActions: [!Ref OperationsTopic]
+Outputs:
+  ApiUrl:
+    { Value: !Sub "https://${Api}.execute-api.${AWS::Region}.amazonaws.com" }
+  LedgerBucket: { Value: !Ref Ledger }
+  AdminUserPool: { Value: !Ref AdminPool }
+  AdminClientId: { Value: !Ref AdminClient }
+  AdminDomainUrl:
+    {
+      Value: !Sub "https://${AdminDomainPrefix}.auth.${AWS::Region}.amazoncognito.com",
+    }

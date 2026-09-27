@@ -1,0 +1,170 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: into3.ai static site (main site + /landingpages/prelaunch) on private S3 behind CloudFront, with /api/* routed to the reservations HTTP API
+Parameters:
+  ApiDomain:
+    Type: String
+    Description: Reservations HTTP API host, e.g. abc123.execute-api.ap-south-1.amazonaws.com (no scheme)
+  FormsApiDomain:
+    Type: String
+    Description: Website forms HTTP API host (stack into3-website-forms) serving /api/waitlist and /api/scholarship
+  CertificateArn:
+    Type: String
+    Default: ""
+    Description: ACM certificate in us-east-1 covering into3.ai and www.into3.ai. Leave blank until it is ISSUED.
+  Aliases:
+    Type: CommaDelimitedList
+    Default: "into3.ai,www.into3.ai"
+    Description: Hostnames served by the distribution; every name must be covered by CertificateArn
+Conditions:
+  HasCertificate: !Not [!Equals [!Ref CertificateArn, ""]]
+Resources:
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault: { SSEAlgorithm: AES256 }
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules: [{ ObjectOwnership: BucketOwnerEnforced }]
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: cloudfront.amazonaws.com }
+            Action: s3:GetObject
+            Resource: !Sub "${SiteBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}"
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${AWS::StackName}-oac"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+  Router:
+    Type: AWS::CloudFront::Function
+    Properties:
+      Name: !Sub "${AWS::StackName}-router"
+      AutoPublish: true
+      FunctionConfig:
+        Comment: www redirect, landing-page clean URLs, GitHub-Pages-style .html resolution
+        Runtime: cloudfront-js-2.0
+      FunctionCode: |
+        var LP = '/landingpages/prelaunch';
+        var PAGES = {
+          lp1: 'index.html', lp2: 'introduction.html', lp3: 'scientific.html',
+          'learn-more': 'learn-more.html', 'founding-offer': 'founding-offer.html',
+          checkout: 'checkout.html', 'orders-admin': 'orders-admin.html'
+        };
+        // Directories that have an index.html but no sibling <name>.html.
+        var DIRS = { '/gyansetu': true };
+        function qs(q) {
+          var parts = [];
+          for (var k in q) {
+            var v = q[k];
+            if (v.multiValue) v.multiValue.forEach(function (m) { parts.push(k + '=' + m.value); });
+            else parts.push(v.value === '' ? k : k + '=' + v.value);
+          }
+          return parts.length ? '?' + parts.join('&') : '';
+        }
+        function redirect(location) {
+          return { statusCode: 301, statusDescription: 'Moved Permanently', headers: { location: { value: location } } };
+        }
+        function handler(event) {
+          var r = event.request;
+          var host = r.headers.host ? r.headers.host.value : '';
+          var uri = r.uri;
+          if (host === 'www.into3.ai') return redirect('https://into3.ai' + uri + qs(r.querystring));
+          if (uri === LP || uri === LP + '/') return redirect(LP + '/lp1' + qs(r.querystring));
+          if (uri.indexOf(LP + '/') === 0) {
+            var rest = uri.slice(LP.length + 1);
+            if (rest.charAt(rest.length - 1) === '/' && PAGES[rest.slice(0, -1)])
+              return redirect(LP + '/' + rest.slice(0, -1) + qs(r.querystring));
+            if (PAGES[rest]) { r.uri = LP + '/' + PAGES[rest]; return r; }
+          }
+          if (uri.charAt(uri.length - 1) === '/') { r.uri = uri + 'index.html'; return r; }
+          var last = uri.slice(uri.lastIndexOf('/') + 1);
+          if (last.indexOf('.') === -1) {
+            if (DIRS[uri]) return redirect(uri + '/' + qs(r.querystring));
+            r.uri = uri + '.html';
+          }
+          return r;
+        }
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: into3.ai website
+        HttpVersion: http2and3
+        PriceClass: PriceClass_All
+        DefaultRootObject: index.html
+        Aliases: !If [HasCertificate, !Ref Aliases, !Ref AWS::NoValue]
+        ViewerCertificate: !If
+          - HasCertificate
+          - AcmCertificateArn: !Ref CertificateArn
+            SslSupportMethod: sni-only
+            MinimumProtocolVersion: TLSv1.2_2021
+          - CloudFrontDefaultCertificate: true
+        Origins:
+          - Id: site
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+            S3OriginConfig: { OriginAccessIdentity: "" }
+          - Id: forms
+            DomainName: !Ref FormsApiDomain
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols: [TLSv1.2]
+          - Id: api
+            DomainName: !Ref ApiDomain
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols: [TLSv1.2]
+        DefaultCacheBehavior:
+          TargetOriginId: site
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+          AllowedMethods: [GET, HEAD]
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 # Managed-CachingOptimized
+          ResponseHeadersPolicyId: 67f7725c-6f97-4210-82d7-5512b31e9d03 # Managed-SecurityHeadersPolicy
+          FunctionAssociations:
+            - EventType: viewer-request
+              FunctionARN: !GetAtt Router.FunctionMetadata.FunctionARN
+        CacheBehaviors:
+          - PathPattern: /api/waitlist
+            TargetOriginId: forms
+            ViewerProtocolPolicy: https-only
+            AllowedMethods: [GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE]
+            CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad # Managed-CachingDisabled
+            OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac # Managed-AllViewerExceptHostHeader
+          - PathPattern: /api/scholarship
+            TargetOriginId: forms
+            ViewerProtocolPolicy: https-only
+            AllowedMethods: [GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE]
+            CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad # Managed-CachingDisabled
+            OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac # Managed-AllViewerExceptHostHeader
+          - PathPattern: /api/*
+            TargetOriginId: api
+            ViewerProtocolPolicy: https-only
+            AllowedMethods: [GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE]
+            CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad # Managed-CachingDisabled
+            OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac # Managed-AllViewerExceptHostHeader
+Outputs:
+  SiteBucketName: { Value: !Ref SiteBucket }
+  DistributionId: { Value: !Ref Distribution }
+  DistributionDomain: { Value: !GetAtt Distribution.DomainName }

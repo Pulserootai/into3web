@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: into3.ai website forms (waitlist + scholarship) — server.js on Lambda behind an HTTP API; CloudFront routes /api/waitlist and /api/scholarship here
+Parameters:
+  FormsSecretName:
+    Type: String
+    Default: into3/website/forms
+    Description: Secrets Manager secret holding RESEND_API_KEY
+Resources:
+  Api:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 20
+        ThrottlingRateLimit: 5
+  FormsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs22.x
+      CodeUri: ../build/forms/
+      Handler: lambda.handler
+      MemorySize: 256
+      Timeout: 29
+      Environment:
+        Variables:
+          RESEND_API_KEY: !Sub "{{resolve:secretsmanager:${FormsSecretName}:SecretString:RESEND_API_KEY}}"
+          FROM_EMAIL: demo@into3.ai
+          TO_EMAIL: info@into3.ai
+      Events:
+        Waitlist:
+          Type: HttpApi
+          Properties: { ApiId: !Ref Api, Path: /api/waitlist, Method: POST }
+        Scholarship:
+          Type: HttpApi
+          Properties: { ApiId: !Ref Api, Path: /api/scholarship, Method: POST }
+  FormsLogs:
+    Type: AWS::Logs::LogGroup
+    Properties: { LogGroupName: !Sub "/aws/lambda/${FormsFunction}", RetentionInDays: 30 }
+Outputs:
+  ApiDomain: { Value: !Sub "${Api}.execute-api.${AWS::Region}.amazonaws.com" }
