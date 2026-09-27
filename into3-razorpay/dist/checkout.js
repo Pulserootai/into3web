@@ -175,7 +175,17 @@
       if (!modalOpened) release();
     }
   });
-  $("refresh").addEventListener("click", refresh);
+  // Give visible feedback: an unchanged status otherwise looks like a no-op.
+  $("refresh").addEventListener("click", async () => {
+    const button = $("refresh");
+    button.disabled = true;
+    button.textContent = "Checking…";
+    await refresh();
+    button.disabled = false;
+    button.textContent = "Check payment status";
+    $("order-status").textContent +=
+      ` · Status checked at ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
+  });
   $("cancel").addEventListener("click", async () => {
     if (
       !confirm(
