@@ -6,7 +6,7 @@ Parameters:
     Description: Reservations HTTP API host, e.g. abc123.execute-api.ap-south-1.amazonaws.com (no scheme)
   FormsApiDomain:
     Type: String
-    Description: Website forms HTTP API host (stack into3-website-forms) serving /api/waitlist and /api/scholarship
+    Description: Website forms HTTP API host (stack into3-website-forms) serving /api/waitlist, /api/scholarship and /api/track
   CertificateArn:
     Type: String
     Default: ""
@@ -153,6 +153,12 @@ Resources:
             CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad # Managed-CachingDisabled
             OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac # Managed-AllViewerExceptHostHeader
           - PathPattern: /api/scholarship
+            TargetOriginId: forms
+            ViewerProtocolPolicy: https-only
+            AllowedMethods: [GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE]
+            CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad # Managed-CachingDisabled
+            OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac # Managed-AllViewerExceptHostHeader
+          - PathPattern: /api/track
             TargetOriginId: forms
             ViewerProtocolPolicy: https-only
             AllowedMethods: [GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE]

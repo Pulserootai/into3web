@@ -4,6 +4,7 @@ import {
   randomUUID,
   createHash,
 } from "node:crypto";
+import meta from "./meta-capi.cjs";
 export const AMOUNT = 10000,
   CURRENCY = "INR",
   TERMS = "founding-2026-09-26";
@@ -56,8 +57,8 @@ function customer(input) {
   return c;
 }
 export class Reservations {
-  constructor({ store, gateway, config, mailer, now = () => Date.now() }) {
-    Object.assign(this, { store, gateway, config, mailer, now });
+  constructor({ store, gateway, config, mailer, track = null, now = () => Date.now() }) {
+    Object.assign(this, { store, gateway, config, mailer, track, now });
   }
   token(id) {
     return createHmac("sha256", this.config.tokenSecret)
@@ -71,7 +72,77 @@ export class Reservations {
     if (!o) fail(404, "Reservation not found.");
     return o;
   }
-  async create(input, key) {
+  // Meta user_data for an order: checkout form details plus the browser
+  // identifiers captured at checkout (reused for the later Purchase).
+  metaUser(o) {
+    const m = o.meta || {},
+      name = meta.splitName(o.customer.name);
+    return meta.userData({
+      ip: m.ip,
+      ua: m.ua,
+      fbp: m.fbp,
+      fbc: m.fbc,
+      em: o.customer.email,
+      ph: o.customer.phone,
+      fn: name.fn,
+      ln: name.ln,
+      st: o.customer.state,
+      country: "in",
+      hashed: { external_id: m.vid },
+    });
+  }
+  // event_id "ic_<idempotency key>" matches the browser InitiateCheckout, and
+  // stays the same when the same checkout attempt is retried.
+  async initiateCheckout(o) {
+    if (!this.track) return;
+    await this.track({
+      event_name: "InitiateCheckout",
+      event_id: "ic_" + o.key,
+      event_source_url: o.meta?.url || this.config.site + "/checkout",
+      user_data: this.metaUser(o),
+      custom_data: {
+        currency: CURRENCY,
+        value: AMOUNT / 100,
+        content_ids: ["founding-reservation"],
+        content_type: "product",
+        num_items: 1,
+      },
+    });
+  }
+  // Purchase outbox: settle() marks newly confirmed orders pending; this sends
+  // them (event_id "purchase_<reference>", so resends deduplicate) and the
+  // worker retries failures every minute.
+  async sendPurchases(onlyId) {
+    if (!this.track) return;
+    const pending = Object.values((await this.store.read()).orders).filter(
+      (o) => o.capi?.purchase === "pending" && (!onlyId || o.id === onlyId),
+    );
+    for (const o of pending) {
+      const ok = await this.track({
+        event_name: "Purchase",
+        event_id: "purchase_" + o.id,
+        event_time: Math.floor(o.paidAt / 1000),
+        event_source_url: o.meta?.url || this.config.site + "/checkout",
+        user_data: this.metaUser(o),
+        custom_data: {
+          currency: CURRENCY,
+          value: AMOUNT / 100,
+          content_ids: ["founding-reservation"],
+          content_type: "product",
+          num_items: 1,
+          order_id: o.id,
+        },
+      });
+      await this.store.transaction((d) => {
+        const c = d.orders[o.id].capi;
+        if (c.purchase !== "pending") return;
+        c.attempts = (c.attempts || 0) + 1;
+        if (ok) c.purchase = "sent";
+        else if (c.attempts >= 10) c.purchase = "failed";
+      });
+    }
+  }
+  async create(input, key, metaContext = {}) {
     if (!this.config.enabled) fail(503, "Reservations are not open yet.");
     if (this.now() > deadline)
       fail(409, "This pre-launch reservation window has ended.");
@@ -129,6 +200,7 @@ export class Reservations {
         emails: {},
         amount: AMOUNT,
         currency: CURRENCY,
+        meta: metaContext,
       };
       d.orders[id] = o;
       return { order: o, fresh: true };
@@ -139,6 +211,7 @@ export class Reservations {
           409,
           "This order is still being reconciled. Please retry shortly; do not pay twice.",
         );
+      await this.initiateCheckout(claim.order);
       return {
         ...publicOrder(claim.order),
         accessToken: this.token(claim.order.id),
@@ -165,6 +238,7 @@ export class Reservations {
         o.status = "pending";
         return o;
       });
+      await this.initiateCheckout(o);
       return {
         ...publicOrder(o),
         accessToken: this.token(workId),
@@ -221,7 +295,7 @@ export class Reservations {
       if (o.status === "refund_due") {
         o.refundStatus = "requested";
         o.refundRequestedAt = o.cancelRequestedAt || this.now();
-      }
+      } else o.capi = { purchase: "pending", attempts: 0 };
       o.emails.customer = { state: "pending", attempts: 0 };
       o.emails.team = { state: "pending", attempts: 0 };
       d.audit.push({
@@ -257,7 +331,9 @@ export class Reservations {
     )
       fail(400, "Payment signature mismatch.");
     const payment = await this.gateway.payments.fetch(razorpay_payment_id);
-    return this.settle(reference, payment);
+    const result = await this.settle(reference, payment);
+    await this.sendPurchases(reference);
+    return result;
   }
   async status(id, token) {
     const order = await this.owned(id, token);
@@ -387,6 +463,11 @@ export class Reservations {
     });
   }
   async work() {
+    try {
+      await this.sendPurchases();
+    } catch {
+      console.error("Meta Purchase outbox failed");
+    }
     const orders = Object.values((await this.store.read()).orders);
     for (const o of orders
       .filter(

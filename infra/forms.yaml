@@ -1,18 +1,18 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
-Description: into3.ai website forms (waitlist + scholarship) — server.js on Lambda behind an HTTP API; CloudFront routes /api/waitlist and /api/scholarship here
+Description: into3.ai website forms (waitlist + scholarship) and Meta CAPI /api/track — server.js on Lambda behind an HTTP API; CloudFront routes /api/waitlist, /api/scholarship and /api/track here
 Parameters:
   FormsSecretName:
     Type: String
     Default: into3/website/forms
-    Description: Secrets Manager secret holding RESEND_API_KEY
+    Description: Secrets Manager secret holding RESEND_API_KEY and META_CAPI_TOKEN
 Resources:
   Api:
     Type: AWS::Serverless::HttpApi
     Properties:
       DefaultRouteSettings:
-        ThrottlingBurstLimit: 20
-        ThrottlingRateLimit: 5
+        ThrottlingBurstLimit: 100
+        ThrottlingRateLimit: 50
   FormsFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -24,6 +24,9 @@ Resources:
       Environment:
         Variables:
           RESEND_API_KEY: !Sub "{{resolve:secretsmanager:${FormsSecretName}:SecretString:RESEND_API_KEY}}"
+          META_CAPI_TOKEN: !Sub "{{resolve:secretsmanager:${FormsSecretName}:SecretString:META_CAPI_TOKEN}}"
+          META_PIXEL_ID: "1547708980458861"
+          META_API_VERSION: v26.0
           FROM_EMAIL: demo@into3.ai
           TO_EMAIL: info@into3.ai
       Events:
@@ -33,6 +36,9 @@ Resources:
         Scholarship:
           Type: HttpApi
           Properties: { ApiId: !Ref Api, Path: /api/scholarship, Method: POST }
+        Track:
+          Type: HttpApi
+          Properties: { ApiId: !Ref Api, Path: /api/track, Method: POST }
   FormsLogs:
     Type: AWS::Logs::LogGroup
     Properties: { LogGroupName: !Sub "/aws/lambda/${FormsFunction}", RetentionInDays: 30 }

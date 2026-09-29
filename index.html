@@ -2710,9 +2710,8 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1547708980458861');
-fbq('track', 'PageView');
 </script>
+<script src="/assets/meta-events.js?v=1"></script>
 <!-- End Meta Pixel Code -->
 </head>
 <body>
@@ -4428,6 +4427,10 @@ function setupPostExperiment() {
         }
         const data = Object.fromEntries(new FormData(form).entries());
         data.consent = form.querySelector('input[name="consent"]').checked;
+        // Same event_id for the browser Lead and the server Lead sent by /api/waitlist.
+        const im = window.into3Meta;
+        const leadId = im ? im.eventId('lead') : '';
+        if (im) data.meta = Object.assign(im.context(), { eventId: leadId });
 
         submit.disabled = true;
         if (submitText) submitText.textContent = 'Submitting…';
@@ -4443,6 +4446,10 @@ function setupPostExperiment() {
             });
             const body = await res.json().catch(function() { return {}; });
             if (!res.ok) throw new Error(body.error || 'Submission failed. Please try again.');
+            if (im) {
+                im.track('Lead', { content_name: 'waitlist', content_category: data.class }, { eventId: leadId });
+                im.remember(data.parentEmail, data.parentMobile);
+            }
             setStatus("You're on the waitlist — check your email for confirmation.", 'success');
             form.reset();
             setTimeout(close, 2200);

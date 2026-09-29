@@ -1,5 +1,19 @@
 import { timingSafeEqual } from "node:crypto";
 import { TERMS, fail } from "./service.js";
+import meta from "./meta-capi.cjs";
+// Browser identifiers sent with the checkout (assets/meta-events.js) plus the
+// visitor's IP and user agent, stored on the order for InitiateCheckout/Purchase.
+const metaContext = (headers, m) => {
+  m = m && typeof m === "object" ? m : {};
+  return {
+    ip: meta.clientIp(headers),
+    ua: String(headers["user-agent"] || "").slice(0, 500),
+    fbp: meta.cleanFbp(m.fbp),
+    fbc: meta.cleanFbc(m.fbc),
+    url: meta.cleanUrl(m.url),
+    vid: /^[a-f0-9]{64}$/.test(m.vid || "") ? m.vid : undefined,
+  };
+};
 const equal = (a, b) =>
   typeof a === "string" &&
   typeof b === "string" &&
@@ -82,7 +96,11 @@ export async function dispatch({ service, config }, request) {
         mode: config.keyId.startsWith("rzp_live_") ? "live" : "test",
       };
     else if (path === "/api/create-order" && method === "POST")
-      result = await service.create(body, headers["idempotency-key"]);
+      result = await service.create(
+        body,
+        headers["idempotency-key"],
+        metaContext(headers, body.meta),
+      );
     else if (path === "/api/verify-payment" && method === "POST")
       result = await service.verify(body, bearer);
     else if (path === "/api/order-status" && method === "POST")

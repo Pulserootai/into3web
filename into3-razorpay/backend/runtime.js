@@ -6,6 +6,7 @@ import {
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 import { FileStore, S3Store } from "./store.js";
 import { Reservations } from "./service.js";
+import meta from "./meta-capi.cjs";
 let cached;
 function sesSender() {
   const ses = new SESv2Client({});
@@ -126,7 +127,15 @@ export async function runtime() {
     };
   }
   cached = {
-    service: new Reservations({ store, gateway, config, mailer }),
+    service: new Reservations({
+      store,
+      gateway,
+      config,
+      mailer,
+      track: env.META_CAPI_TOKEN
+        ? (event) => meta.send(event, meta.config(env))
+        : null,
+    }),
     config,
   };
   return cached;

@@ -117,9 +117,26 @@
         attempt = { fingerprint, key: crypto.randomUUID() };
         sessionStorage.setItem("into3-attempt", JSON.stringify(attempt));
       }
-      order = await api("/api/create-order", input, {
-        "Idempotency-Key": attempt.key,
-      });
+      // Meta: browser identifiers for the server events; event_ids are derived
+      // from the attempt key / reference so browser and server copies match.
+      const im = window.into3Meta;
+      order = await api(
+        "/api/create-order",
+        im ? { ...input, meta: im.context() } : input,
+        { "Idempotency-Key": attempt.key },
+      );
+      im?.track(
+        "InitiateCheckout",
+        {
+          value: order.amount / 100,
+          currency: order.currency,
+          content_ids: ["founding-reservation"],
+          content_type: "product",
+          num_items: 1,
+        },
+        { eventId: "ic_" + attempt.key },
+      );
+      im?.remember(input.email, input.phone);
       sessionStorage.setItem("into3-order", JSON.stringify(order));
       if (order.status !== "pending") {
         show(order);
@@ -146,12 +163,24 @@
         handler: async (result) => {
           message("Verifying payment…");
           try {
-            show(
-              await api("/api/verify-payment", {
-                reference: order.reference,
-                ...result,
-              }),
-            );
+            const verified = await api("/api/verify-payment", {
+              reference: order.reference,
+              ...result,
+            });
+            if (verified.status === "confirmed")
+              window.into3Meta?.track(
+                "Purchase",
+                {
+                  value: verified.amount / 100,
+                  currency: verified.currency,
+                  content_ids: ["founding-reservation"],
+                  content_type: "product",
+                  num_items: 1,
+                  order_id: verified.reference,
+                },
+                { eventId: "purchase_" + verified.reference },
+              );
+            show(verified);
           } catch (err) {
             message(
               err.message + " Use Check payment status; do not pay again.",

@@ -408,9 +408,8 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1547708980458861');
-fbq('track', 'PageView');
 </script>
+<script src="/assets/meta-events.js?v=1"></script>
 <!-- End Meta Pixel Code -->
 </head>
 <body>
@@ -828,6 +827,10 @@ src="https://www.facebook.com/tr?id=1547708980458861&amp;ev=PageView&amp;noscrip
         const message = data.get('message') || 'None';
 
         const payload = { studentName, parentName, email, phone, grade, school, city, state, testDate, referral, message };
+        // Same event_id for the browser and server CompleteRegistration.
+        const im = window.into3Meta;
+        const regId = im ? im.eventId('reg') : '';
+        if (im) payload.meta = Object.assign(im.context(), { eventId: regId });
         const submitBtn = form.querySelector('.submit-btn');
         const btnLabel = submitBtn.textContent;
         submitBtn.disabled = true;
@@ -863,6 +866,10 @@ src="https://www.facebook.com/tr?id=1547708980458861&amp;ev=PageView&amp;noscrip
         }).then(function(res) {
             return res.json().catch(function() { return {}; }).then(function(data) {
                 if (!res.ok) throw new Error(data.error || 'Could not submit your registration.');
+                if (im) {
+                    im.track('CompleteRegistration', { status: 'registered', content_name: 'scholarship-test' }, { eventId: regId });
+                    im.remember(email, phone);
+                }
                 form.style.display = 'none';
                 successState.classList.add('visible');
             });

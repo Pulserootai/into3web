@@ -4,6 +4,7 @@ import { createHmac } from "node:crypto";
 import { Reservations, TERMS, signature } from "../service.js";
 import { empty, FileStore, S3Store } from "../store.js";
 import { dispatch } from "../api.js";
+import meta from "../meta-capi.cjs";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -26,7 +27,7 @@ const config = {
   origin: "http://localhost:8801",
   adminToken: "b".repeat(40),
 };
-function setup() {
+function setup({ track } = {}) {
   let state = empty();
   const store = {
     read: async () => structuredClone(state),
@@ -65,6 +66,7 @@ function setup() {
     store,
     gateway,
     config: { ...config },
+    track,
     now: () => time,
   });
   return { s, store, gateway, payments, setTime: (n) => (time = n) };
@@ -358,4 +360,83 @@ test("S3 retries conditional write conflicts rather than overwriting", async () 
     "ok",
   );
   assert.equal(writes, 2);
+});
+
+test("Meta events: InitiateCheckout and Purchase share browser event_ids and hash PII", async () => {
+  const sent = [];
+  let accept = false;
+  const { s, payments } = setup({
+    track: async (e) => (sent.push(e), accept),
+  });
+  const vid = "c".repeat(64);
+  const o = await s.create(input, "idempotency_fixture_key_001", {
+    ip: "203.0.113.9",
+    ua: "Mozilla/5.0",
+    fbp: "fb.1.1759000000000.1234567890",
+    fbc: "fb.1.1759000000000.IwAR_test_click",
+    url: "https://into3.ai/landingpages/prelaunch/checkout",
+    vid,
+  });
+  const ic = sent.shift();
+  assert.equal(ic.event_name, "InitiateCheckout");
+  assert.equal(ic.event_id, "ic_idempotency_fixture_key_001");
+  assert.deepEqual(
+    [ic.custom_data.value, ic.custom_data.currency],
+    [100, "INR"],
+  );
+  const u = ic.user_data;
+  assert.equal(u.client_ip_address, "203.0.113.9");
+  assert.equal(u.fbc, "fb.1.1759000000000.IwAR_test_click");
+  assert.deepEqual(u.em, [meta.sha("parent@example.test")]);
+  assert.deepEqual(u.ph, [meta.sha("919876543210")]);
+  assert.deepEqual(u.fn, [meta.sha("parent")]);
+  assert.deepEqual(u.st, [meta.sha("uttarpradesh")]);
+  assert.deepEqual(u.external_id, [vid]);
+  assert.ok(!JSON.stringify(ic).includes("parent@example.test"));
+
+  payments.pay_test = paid(o);
+  await s.verify(signed(o), o.accessToken);
+  const purchase = sent.shift();
+  assert.equal(purchase.event_name, "Purchase");
+  assert.equal(purchase.event_id, "purchase_" + o.reference);
+  assert.equal(purchase.custom_data.value, 100);
+  assert.equal(purchase.user_data.fbp, "fb.1.1759000000000.1234567890");
+  // Meta rejected it: the worker retries until accepted, then stops.
+  accept = true;
+  await s.work();
+  assert.equal(sent.filter((e) => e.event_name === "Purchase").length, 1);
+  sent.length = 0;
+  await s.work();
+  assert.equal(sent.length, 0);
+  assert.equal((await s.list())[0].status, "confirmed");
+});
+
+test("Meta events: no Purchase for a capture that must be refunded", async () => {
+  const sent = [];
+  const { s, payments } = setup({ track: async (e) => (sent.push(e), true) });
+  const o = await create(s);
+  await s.cancel(o.reference, o.accessToken);
+  payments.pay_test = paid(o);
+  await s.status(o.reference, o.accessToken);
+  await s.work();
+  assert.deepEqual(
+    sent.map((e) => e.event_name),
+    ["InitiateCheckout"],
+  );
+});
+
+test("Meta helpers normalise identifiers and filter bots", () => {
+  assert.deepEqual(meta.userData({ ph: "098765 43210" }).ph, [
+    meta.sha("919876543210"),
+  ]);
+  assert.deepEqual(meta.userData({ em: "  A@B.Co " }).em, [meta.sha("a@b.co")]);
+  assert.equal(meta.userData({ hashed: { em: "not-a-hash" } }).em, undefined);
+  assert.equal(meta.cleanFbp("fb.1.123.<script>"), undefined);
+  assert.equal(
+    meta.clientIp({ "x-forwarded-for": "198.51.100.7, 70.132.1.1" }),
+    "198.51.100.7",
+  );
+  assert.ok(meta.isBot("Mozilla/5.0 (compatible; Googlebot/2.1)"));
+  assert.ok(meta.isBot("Mozilla/5.0 HeadlessChrome/120"));
+  assert.ok(!meta.isBot("Mozilla/5.0 (iPhone; CPU iPhone OS 18_0) Safari/604.1"));
 });
