@@ -1,0 +1,44 @@
+/* LP3: teaching styles, with one fully worked concept in four voices. */
+.style-hero{padding-top:56px}.style-hero .hero-grid{grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.parent-question{font-size:20px;font-weight:550;line-height:1.6;max-width:470px;margin-top:24px;color:#50415f}
+.style-hero h1{font-size:clamp(2.5rem,3.85vw,3.8rem);margin:15px 0 22px;line-height:1.16}
+.style-hero .hero-lead{font-size:18px;line-height:1.65}.style-hero .hero-proof{padding:0;overflow:hidden}
+.hero-style-list{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:23px 18px 0}
+.hero-style-list span{text-align:center;font-size:14px;font-weight:600;color:#f1e8ff;line-height:1.5;padding:4px}
+.hero-style-list span+span{border-left:1px solid #ffffff2a}.style-hero .concept-note{padding:0 22px 20px;margin-top:14px;font-size:12px}
+.style-hero .hero-scene figcaption{font-size:12px;letter-spacing:.05em}
+.style-section{padding-top:90px}.style-section .section-heading{max-width:850px}
+.concept-header{display:flex;gap:24px;align-items:center;border-top:1px solid #d7cee3;padding:22px 0}
+.concept-header span{font-size:12px;color:#756482;letter-spacing:.08em;font-weight:700;flex-shrink:0}
+.concept-header strong{font-size:20px;font-weight:600;line-height:1.5}
+.style-switch{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.style-switch button{position:relative;background:#f6f2fc;border:1px solid #e2d6f1;border-radius:10px;padding:17px 18px;cursor:pointer;color:#4a315f;text-align:left}
+.style-switch button>span{display:block;font-family:Manrope,sans-serif;font-size:21px;font-weight:800;line-height:1.5;letter-spacing:-.03em}
+.style-switch small{display:block;font-size:14px;line-height:1.6;margin-top:3px;color:#756080}
+.style-switch button[aria-selected=true]{background:#6331e7;border-color:#6331e7;color:#fff}
+.style-switch button[aria-selected=true] small{color:#efe4ff}
+.style-lesson{display:grid;grid-template-columns:1fr 1fr;border-radius:18px;border:1px solid #ded4e9;overflow:hidden;min-height:525px}
+.style-lesson[hidden]{display:none}.teacher-script{background:#1b092e;color:white;padding:38px 38px 30px;display:flex;flex-direction:column;align-items:flex-start}
+.style-kicker{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;line-height:1.5;color:#c9afe8;font-size:12px;letter-spacing:.08em}
+.style-kicker b{font-size:14px;font-weight:500;letter-spacing:0}
+.teacher-script .tone{margin-top:30px;font-size:14px;line-height:1.6;color:#d7c6e6;padding-bottom:18px;border-bottom:1px solid #ffffff24;width:100%}
+.teacher-script h3{font-size:clamp(1.7rem,2.5vw,2.5rem);letter-spacing:-.03em;line-height:1.25;margin:25px 0 20px;color:#e6c5ff}
+.teacher-script blockquote{font-size:23px;line-height:1.65;letter-spacing:-.015em;margin-bottom:28px}
+.script-caption{font-size:12px;line-height:1.6;color:#bfa6d0;margin-top:auto}
+.visual-lesson{background:#fcfaff;padding:38px}.visual-lesson>.mini-label{font-size:12px;line-height:1.6;letter-spacing:.07em;color:#79529b}
+.scene-parts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin:27px 0 18px}
+.scene-part{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;min-height:79px;border:1px solid #d6c8e4;border-radius:5px;background:#f1eaf8;color:#735b89}
+.scene-part.selected{background:#6c37cb;border-color:#6c37cb;color:white}.scene-part>span{font-size:12px;line-height:1.4}.scene-part strong{font-size:26px;line-height:1.3;font-weight:600}
+.scene-legend{display:flex;gap:10px 25px;flex-wrap:wrap;font-size:14px;line-height:1.5;color:#6a537d}.scene-legend>span{display:flex;align-items:center;gap:7px}.scene-legend i{display:block;width:10px;height:10px;background:#e0d3eb;border:1px solid #bdaccd;border-radius:2px}.scene-legend i.selected{background:#6c37cb;border-color:#6c37cb}
+.fraction-reason{font-size:14px;line-height:1.6;color:#6f5a80;margin-top:23px}
+.style-equation{display:flex;align-items:baseline;gap:19px;margin:8px 0 27px}.style-equation strong{font-size:40px;letter-spacing:-.04em;font-weight:700;line-height:1.3;color:#6033b0;white-space:nowrap}.style-equation span{font-size:16px;color:#735389}
+.quick-check{border-top:1px solid #e4d9ef;padding-top:22px}.quick-check>.mini-label{font-size:12px;color:#705885;line-height:1.6;letter-spacing:.05em}.quick-check>p:not(.mini-label){font-size:16px;line-height:1.65;margin:11px 0 13px}.quick-check summary{font-size:14px;color:#6533be;cursor:pointer;text-underline-offset:4px;text-decoration:underline;min-height:32px}.quick-check details p{font-size:16px;margin-top:8px;color:#4e385e}
+.style-lesson.sports .teacher-script{background:#0c2830}.sports .teacher-script h3{color:#c3ebe0}.sports .style-kicker,.sports .tone,.sports .script-caption{color:#bbd8d7}
+.style-lesson.comedy .teacher-script{background:#402035}.comedy .teacher-script h3{color:#ffd3e3}.comedy .style-kicker,.comedy .tone,.comedy .script-caption{color:#e5c7d5}
+.style-lesson.general .teacher-script{background:#25283f}.general .teacher-script h3{color:#d7d4ff}.general .style-kicker,.general .tone,.general .script-caption{color:#c4c5de}
+.style-takeaway{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;padding-top:28px}.style-takeaway strong{font-family:Manrope,sans-serif;font-size:24px;line-height:1.5;letter-spacing:-.03em}.style-takeaway>p:last-child{font-size:16px;color:var(--muted);line-height:1.65}
+.benefit>summary small{font-size:12px}.benefit>summary span>span,.benefit-body>p,.faq-list details>p{font-size:16px}
+.closing h2{max-width:680px;font-size:clamp(2rem,3.4vw,3.3rem)}
+@media(max-width:1050px){.style-hero .hero-grid{gap:30px}.style-hero h1{font-size:2.75rem}.teacher-script,.visual-lesson{padding:28px}.teacher-script blockquote{font-size:21px}.style-switch button{padding:15px}.style-equation{flex-wrap:wrap;gap:7px 15px}.scene-part>span{font-size:12px}.hero-style-list{margin-inline:10px}.hero-style-list span{font-size:14px}}
+@media(max-width:760px){.style-hero{padding-top:31px}.style-hero .hero-grid{grid-template-columns:1fr;gap:30px}.style-hero .parent-question{font-size:18px;margin-top:21px;max-width:470px}.style-hero h1{font-size:clamp(2.2rem,8.7vw,3.3rem);margin-top:13px}.style-hero h1 em br{display:initial}.style-hero .hero-lead{font-size:16px}.style-hero .hero-scene figcaption{font-size:12px;letter-spacing:.02em}.hero-style-list{margin-top:19px}.hero-style-list span{font-size:14px}.style-hero .concept-note{padding:0 16px 18px;line-height:1.6}.style-section{padding-top:60px}.concept-header{display:block;padding:20px 0}.concept-header strong{display:block;font-size:20px;margin-top:8px}.style-switch{grid-template-columns:1fr 1fr;gap:9px}.style-switch button{padding:13px 15px}.style-switch button>span{font-size:20px}.style-switch small{font-size:14px;margin-top:1px}.style-lesson{grid-template-columns:1fr;border-radius:13px;min-height:0}.teacher-script,.visual-lesson{padding:25px}.teacher-script .tone{margin-top:21px;padding-bottom:15px}.teacher-script h3{font-size:28px;margin:22px 0 17px}.teacher-script blockquote{font-size:21px;line-height:1.65;margin-bottom:23px}.teacher-script .script-caption{font-size:12px}.scene-parts{margin:24px 0 16px;gap:4px}.scene-part{min-height:74px;gap:7px}.scene-part>span{font-size:12px}.scene-part strong{font-size:24px}.style-equation strong{font-size:36px}.scene-legend{font-size:14px;gap:10px 18px}.style-takeaway{grid-template-columns:1fr;gap:13px;padding-top:24px}.style-takeaway strong{font-size:22px}.style-takeaway>p:last-child{font-size:16px}.benefit-body>p,.benefit>summary span>span,.faq-list details>p{font-size:16px}.closing h2{font-size:2.3rem}}
+@media(max-width:359px){.style-hero .eyebrow{font-size:12px;letter-spacing:.035em}.style-hero h1{font-size:2.15rem}.style-hero .parent-question{font-size:17px}.hero-style-list{grid-template-columns:1fr 1fr;gap:10px;margin-inline:16px}.hero-style-list span:nth-child(3){border-left:0}.teacher-script,.visual-lesson{padding:21px}.style-switch button{padding:12px}.style-switch small{font-size:13px}.scene-part>span{font-size:12px}.scene-part strong{font-size:22px}.scene-part{min-height:72px}.scene-parts{grid-template-columns:repeat(3,1fr);gap:6px}.style-equation strong{font-size:34px}.style-equation{display:block}.style-equation span{display:block;margin-top:5px}.teacher-script blockquote{font-size:20px}.teacher-script h3{font-size:26px}.style-switch button>span{font-size:19px}}

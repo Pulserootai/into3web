@@ -11,7 +11,7 @@ rm -rf "$out"
 mkdir -p "$out/landingpages/prelaunch"
 rsync -a \
   --exclude '.git' --exclude '.gitignore' --exclude '.DS_Store' --exclude 'node_modules' \
-  --exclude 'into3-razorpay' --exclude 'CNAME' --exclude '*.pdf' \
+  --exclude 'into3-razorpay' --exclude 'Into3-Alok-Handoff' --exclude 'CNAME' --exclude '*.pdf' \
   --exclude 'server.js' --exclude 'lambda.js' --exclude 'package.json' --exclude 'package-lock.json' \
   --exclude '.env*' --exclude '.claude' --exclude '/build' --exclude '/infra' --exclude '.aws-sam' \
   "$root/" "$out/"
